@@ -3,6 +3,9 @@ const router = require("express").Router();
 
 router.route('/')
     .get(controller.getMembers)
-    .put(controller.insertMembers)
+    .post(controller.insertMembers)
+
+router.route('/find/:id')
+    .get(controller.searchMembers)
 
 module.exports = router;
