@@ -5,7 +5,7 @@ router.route('/')
     .get(controller.getMembers)
     .post(controller.insertMembers)
 
-router.route('/find/:id')
-    .get(controller.searchMembers)
+router.route('/login')
+    .get(controller.loginMembers)
 
 module.exports = router;

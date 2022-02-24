@@ -1,9 +1,10 @@
-const connection = require('../config/dbconfig.js')
+const connection = require('../config/dbconfig.js');
+const MySQLStore = require('express-session');
 
 const controller = {
     getMembers : async (req, res) => {
-        connection.query('SELECT * FROM member', (error, rows) => {
-            if(error) throw error;
+        connection.query('SELECT * FROM member', (err, rows) => {
+            if(err) throw err;
             res.send(rows);
         })
     },
@@ -15,27 +16,34 @@ const controller = {
         ('${name}','${gender}','${phone}','${address}','${id}','${password}');`
 
         connection.query(
-            sql,(error, rows) =>{
-                if(error) throw error;
+            sql,(err, rows) =>{
+                if(err) throw err;
                 res.send(rows);
             });
     },
 
-    searchMembers : async (req, res) => {
-        connection.query(`SELECT * FROM member WHERE id = ${id}`, (err, res) => {
-            if (err) {
-                console.log("error: ", err);
-                result(err, null);
-                return;
-              }
-              if (res.length) {
-                console.log("found tutorial: ", res[0]);
-                result(null, res[0]);
-                return;
-              }
-              // not found Tutorial with the id
-              result({ kind: "not_found" }, null);
-        });
+    loginMembers : async (req, res) => {
+        const id = req.body.id;
+        const password = req.body.password;
+        connection.query('SELECT * FROM member WHERE id = ?', [id], function(err, rows){
+            if(rows.length){
+                if(rows.id === this.id) {
+                    connection.query('SELECT * FROM member WHERE password = ?', [password], function(err, rows){
+                        if(err) throw err;
+                        if(rows.length){
+                            
+                            res.send({'result':'ok'})
+                            console.log(id + ", " + password);
+                        }else{
+                            res.send({'result':'pwfalse'})
+                        }
+                    })
+                }
+            }
+            else{
+                res.send({'result':'idfalse'});
+            }
+        })
     }
 }
 

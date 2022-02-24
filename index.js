@@ -3,7 +3,6 @@ const fs = require('fs');
 const cors = require('cors');
 const path = require('path');
 const bodyParser = require('body-parser');
-const { json } = require('body-parser');
 const { hostname } = require('os');
 
 const app = express();
