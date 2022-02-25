@@ -1,11 +1,9 @@
-const { append } = require('express/lib/response');
-const fs = require('fs');
 const mysql = require('mysql');
 const session = require('express-session');
-const MySQLStore = require('express-mysql-session');
+const MySQLStore = require('express-mysql-session')(session);
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
-app.use(express.json());
 
 const connection = mysql.createConnection({
     host: "localhost",
@@ -17,16 +15,21 @@ const connection = mysql.createConnection({
 
 var sessionStore = new MySQLStore(connection);
 
-app.use(session({
-    secret:'my key',
-    resave:false,
-    saveUninitialized:true,
-    store: sessionStore
-}));
-
 connection.connect(error => {
     if (error) throw error;
     console.log("Successfully connected to the database.");
 });
+
+app.use(session({
+    httpOnly: true,
+    key: 'my key',
+    secret: 'my secret',
+    resave: false,
+    saveUninitialized: true,
+    store: sessionStore
+}));
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
 
 module.exports = connection;
