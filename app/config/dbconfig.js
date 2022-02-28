@@ -4,6 +4,10 @@ const MySQLStore = require('express-mysql-session')(session);
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+const cors = require('cors');
+const axios = require('axios');
+
+axios.default.withCredentials = true;
 
 const connection = mysql.createConnection({
     host: "localhost",
@@ -13,21 +17,14 @@ const connection = mysql.createConnection({
     database: "moble_shop"
 });
 
-var sessionStore = new MySQLStore(connection);
-
 connection.connect(error => {
     if (error) throw error;
     console.log("Successfully connected to the database.");
 });
-
-app.use(session({
-    httpOnly: true,
-    key: 'my key',
-    secret: 'my secret',
-    resave: false,
-    saveUninitialized: true,
-    store: sessionStore
-}));
+app.use(cors({
+    origin : true,
+    credentials : true
+}))
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());

@@ -9,7 +9,13 @@ router.route('/')
 router.route('/login')
     .post(controller.loginMembers)
 
+router.route('/logout')
+    .post(controller.logoutMembers)
+
 router.route('/member')
     .get(controller.searchMembers)
+
+router.route('/loginCheck')
+    .get(controller.loginCheck)
 
 module.exports = router;
