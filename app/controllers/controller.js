@@ -37,11 +37,11 @@ const controller = {
                         if (rows[0].password == password) {
                             req.session.loginData = id;
                             req.session.loginCheck = true;
-                            req.session.save(function(){
-                                console.log({'result' : 'ok'})
+                            req.session.save(function () {
+                                console.log({ 'result': 'ok' })
                             });
                             res.send('로그인 성공 ' + rows[0].name + '님 반갑습니다.');
-                            console.log('로그인 한 계정 : ' + id + ", " + rows[0].password + "||||||" + req.session.loginData + "|||||" + req.session.loginCheck);
+                            console.log('로그인 한 계정 : ' + rows[0].name + ", " + req.session.loginCheck);
                         }
                         else {
                             console.log(rows[0].id + id);
@@ -60,9 +60,8 @@ const controller = {
     logoutMembers: async (req, res) => {
         if (req.session.loginData) {
             console.log('로그아웃 성공');
-            delete req.session.loginData;
-            delete req.session.loginCheck;
-            req.session.save(function(){
+            req.session.destroy(function (err) {
+                if (err) { return next(err); }
                 res.redirect('/');
             })
         }
@@ -95,6 +94,25 @@ const controller = {
         }
         else {
             res.send({ loggedIn: false })
+        }
+    },
+
+    infoUpdate: async (req, res) => {
+        const name = req.body.name;
+        const address = req.body.address;
+        const id = req.body.id;
+        const password = req.body.password;
+
+        connection.query('UPDATE member SET address=?, id=?, passsword=? WHERE name=?', [address, id, password, name], function (err, rows) {
+            console.log(name + address + id + password);
+            res.send("ok");
+        })
+    },
+
+    basket: async (req, res) => {
+        if (req.session.loginData) {
+            const id = req.session.loginData;
+            connection.query('')
         }
     }
 }

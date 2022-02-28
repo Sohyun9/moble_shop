@@ -10,7 +10,7 @@ app.use(session({
     key: 'my key',
     secret: 'my secret',
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     store : MySQLStore({
         host : connected.host,
         user : connected.user,

@@ -18,4 +18,7 @@ router.route('/member')
 router.route('/loginCheck')
     .get(controller.loginCheck)
 
+router.route('/login/member/edit')
+    .post(controller.infoUpdate)
+
 module.exports = router;
