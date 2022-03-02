@@ -10,7 +10,10 @@ router.route('/login')
     .post(controller.loginMembers)
 
 router.route('/logout')
-    .post(controller.logoutMembers)
+    .get(controller.logoutMembers)
+
+router.route('/drop')
+    .get(controller.deleteMember)
 
 router.route('/member')
     .get(controller.searchMembers)
@@ -20,5 +23,9 @@ router.route('/loginCheck')
 
 router.route('/login/member/edit')
     .post(controller.infoUpdate)
+
+//id를 고유값으로 설정하였기 때문에 중복확인을 위한 API
+router.route('/idcheck')
+    .get(controller.checkId)
 
 module.exports = router;
