@@ -48,30 +48,28 @@ const controller = {
 
     //로그인
     loginMembers: async (req, res) => {
-        const id = req.body.id;
-        const password = req.body.password;
-        connection.query('SELECT * FROM member WHERE id = ?', [id], function (err, rows) {
+        var url = 'http://localhost:4002/login';
+        connection.query('SELECT * FROM member WHERE id = ?', [url.id], function (err, rows) {
             if (rows.length) {
-                if (rows[0].id === id) {
-                    connection.query('SELECT * FROM member WHERE password = ?', [password], function (err, rows) {
-                        if (rows[0].password == password) {
+                if (rows[0].id === url.id) {
+                    connection.query('SELECT * FROM member WHERE password = ?', [url.password], function (err, rows) {
+                        if (rows[0].password === url.password) {
                             req.session.loginData = id;
                             req.session.loginCheck = true;
                             req.session.save(function () {
-                                console.log({ 'result': 'ok' })
+                                res.json('ok');
                             });
-                            res.send('로그인 성공 ' + rows[0].name + '님 반갑습니다.');
-                            console.log('로그인 한 계정 : ' + rows[0].name + ", " + req.session.loginCheck);
+                            console.log('로그인 한 계정 : ' + rows[0].id + ", " + req.session.loginCheck);
                         }
                         else {
                             console.log(rows[0].id + id);
-                            res.send({ 'result': 'pwerror' })
+                            res.json('pwerror');
                         }
                     })
                 }
                 else {
                     console.log(rows[0].id);
-                    res.send({ 'result': 'iderror' });
+                    res.json('iderror');
                 }
             }
         })
