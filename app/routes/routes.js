@@ -28,4 +28,7 @@ router.route('/login/member/edit')
 router.route('/idcheck')
     .get(controller.checkId)
 
+router.route('/idtest')
+    .post(controller.login)
+
 module.exports = router;

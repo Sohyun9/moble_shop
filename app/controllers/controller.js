@@ -2,8 +2,18 @@ const connection = require('../config/dbconfig.js');
 const express = require('express');
 const session = require('express-session');
 const app = express();
+const http = require("http");
+const request = require('request');
+const { json } = require('express/lib/response');
 
 app.use(session());
+
+const options = {
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+    }
+}
 
 const controller = {
     //윈도우즈 응용프로그램에 들어가는 전체 회원 정보 출력
@@ -25,22 +35,22 @@ const controller = {
             sql, (err, rows) => {
                 if (err) throw err;
                 res.send("yes");
-            })     
+            })
     },
 
     //아이디 중복 체크
-    checkId : async (req, res) => {
+    checkId: async (req, res) => {
         const user_id = req.body.id;
 
-        connection.query("SELECT id FROM member WHERE id = ?", [user_id], function(err, rows){
+        connection.query("SELECT id FROM member WHERE id = ?", [user_id], function (err, rows) {
             console.log(rows);
             var checkid = "0";
 
-            if(rows[0] === undefined) {
+            if (rows[0] === undefined) {
                 checkid = "1";
                 res.send(checkid);
             }
-            else{
+            else {
                 res.send(checkid);
             }
         })
@@ -48,12 +58,13 @@ const controller = {
 
     //로그인
     loginMembers: async (req, res) => {
-        var url = 'http://localhost:4002/login';
-        connection.query('SELECT * FROM member WHERE id = ?', [url.id], function (err, rows) {
+        var id = req.body.id;
+        var password = req.body.password;
+        connection.query('SELECT * FROM member WHERE id = ?', [id], function (err, rows) {
             if (rows.length) {
-                if (rows[0].id === url.id) {
-                    connection.query('SELECT * FROM member WHERE password = ?', [url.password], function (err, rows) {
-                        if (rows[0].password === url.password) {
+                if (rows[0].id === id) {
+                    connection.query('SELECT * FROM member WHERE password = ?', [password], function (err, rows) {
+                        if (rows[0].password === password) {
                             req.session.loginData = id;
                             req.session.loginCheck = true;
                             req.session.save(function () {
@@ -81,10 +92,10 @@ const controller = {
             console.log('로그아웃 성공');
             res.send("yes");
             res.clearCookie();
-            req.session.destroy(function(){
+            req.session.destroy(function () {
                 req.session;
             });
-        }else {
+        } else {
             console.log('로그인 상태가 아닙니다.');
             res.send("no");
         }
@@ -133,27 +144,25 @@ const controller = {
     },
 
     //회원탈퇴
-    deleteMember : async (req, res) => {
+    deleteMember: async (req, res) => {
         const id = req.body.id;
 
-        if(req.session.loginCheck === true)
-        {
-            if(req.session.loginData === id)
-            {
+        if (req.session.loginCheck === true) {
+            if (req.session.loginData === id) {
                 connection.query('DELETE FROM member WHERE id = ?', [id], (err, rows) => {
-                    if(err) throw err;
+                    if (err) throw err;
                     console.log("테이블 데이터 삭제 성공");
                     res.send("yes");
                 })
             }
-            
-            else{
+
+            else {
                 res.send("error");
             }
         }
-        else{
+        else {
             res.send("error");
-        }      
+        }
     },
 
     //장바구니
@@ -162,6 +171,25 @@ const controller = {
             const id = req.session.loginData;
             connection.query('')
         }
+    },
+
+    //API 테스트용
+    login: async (req, res) => {
+        http.createServer(function(req, res){
+            var jsonData = "";
+            req.on('data', function (chunk){
+                jsonData += chunk;
+            });
+            req.on('end', function(){
+                var reqObj = JSON.parse(jsonData);
+                var resObj = {
+                    message : "Hello" + reqObj.name,
+                    qustion : "Are you a good " + reqObj.occupation + "?"
+                };
+                res.writeHead(200);
+                res.end(JSON.stringify(resObj));
+            });
+        })
     }
 }
 
