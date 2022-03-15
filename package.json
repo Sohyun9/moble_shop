@@ -4,7 +4,7 @@
   "description": "쇼핑몰 API 서버 테스트",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./bin/www",
+    "start": "nodemon ./index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

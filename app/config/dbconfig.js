@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const cors = require('cors');
 const axios = require('axios');
+app.use(bodyParser.json());
 
 axios.default.withCredentials = true;
 

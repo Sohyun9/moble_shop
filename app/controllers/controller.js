@@ -2,18 +2,14 @@ const connection = require('../config/dbconfig.js');
 const express = require('express');
 const session = require('express-session');
 const app = express();
-const http = require("http");
+const bodyParser = require('body-parser')
+const http = require('http');
 const request = require('request');
-const { json } = require('express/lib/response');
-
+const fs = require('fs').promises;
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(session());
-
-const options = {
-    method: 'GET',
-    headers: {
-        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
-    }
-}
+app.use(express.json());
 
 const controller = {
     //윈도우즈 응용프로그램에 들어가는 전체 회원 정보 출력
@@ -175,20 +171,16 @@ const controller = {
 
     //API 테스트용
     login: async (req, res) => {
-        http.createServer(function(req, res){
-            var jsonData = "";
-            req.on('data', function (chunk){
-                jsonData += chunk;
-            });
-            req.on('end', function(){
-                var reqObj = JSON.parse(jsonData);
-                var resObj = {
-                    message : "Hello" + reqObj.name,
-                    qustion : "Are you a good " + reqObj.occupation + "?"
-                };
-                res.writeHead(200);
-                res.end(JSON.stringify(resObj));
-            });
+        var opts = {
+            host: 'localhost',
+            port: 4003,
+            method: 'POST',
+            path: '/test',
+            headers: {}
+        };
+
+        http.request(opts, function (req, res) {
+            res.send(req.body);
         })
     }
 }

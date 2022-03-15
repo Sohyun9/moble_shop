@@ -1,6 +1,7 @@
 const controller = require("../controllers/controller.js");
 const router = require("express").Router();
 const session = require('express-session');
+app.use(bodyParser.json());
 
 router.route('/')
     .get(controller.getMembers)
