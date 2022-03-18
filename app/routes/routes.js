@@ -6,21 +6,28 @@ const app = express();
 app.use(bodyParser.json());
 
 router.route('/')
-    .get(controller.controller.getMembers)
+    .get(controller.output.home)
+
+router.route('/main')
+    .get(controller.output.main)
+
+router.route('/register')
+    .get(controller.output.register)
     .post(controller.controller.insertMembers)
 
 router.route('/login')
     .get(controller.output.login)
     .post(controller.controller.loginMembers)
 
+router.route('/main/mypage')
+    .get(controller.output.mypage)
+    .post(controller.controller.mypage)
+
 router.route('/logout')
     .get(controller.controller.logoutMembers)
 
 router.route('/drop')
     .get(controller.controller.deleteMember)
-
-router.route('/member')
-    .get(controller.controller.searchMembers)
 
 router.route('/loginCheck')
     .get(controller.controller.loginCheck)

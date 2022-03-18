@@ -12,8 +12,8 @@ axios.default.withCredentials = true;
 
 const connection = mysql.createConnection({
     host: "localhost",
-    user: "root",
-    password: "1234",
+    user: "root1",
+    password: "123456",
     port: "3306",
     database: "moble_shop"
 });

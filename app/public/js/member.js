@@ -10,8 +10,6 @@ var pwMsgArea = document.querySelector('.int_pass');
 
 var userName = document.querySelector('#name');
 
-
-
 var gender = document.querySelector('#gender');
 
 var email = document.querySelector('#email');

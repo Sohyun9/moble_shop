@@ -6,20 +6,19 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-    <title>연습</title>
-    <style>
-        @import url(mypage.css);
-    </style>
+    <title>moble_shop</title>
+    <link rel="stylesheet" href="/css/main2.css">
+    <script src="/js/main2.js" defer></script>
 
 </head>
 <body>
 
     <header>
         <div id="top">
-            <h2 onclick="location.href='main2.html'">Moble shop</h2>
+            <h2 onclick="location.href='/main'">Moble shop</h2>
         </div>
         <div id="login">
-            <a href="main.html">로그아웃</a>  <a href="">마이페이지</a>
+            <a href="/">로그아웃</a>  <a href="/main/mypage">마이페이지</a>
         </div>
     </header>
 
@@ -81,36 +80,45 @@
         </div>
        
     </nav>
-    
-
+  
     <section>
-       <div id="my">
-            <h2>My page</h2>
-            <table style="margin-top: 50px; width: 100%;">
-                <th style="height: 50px; text-align: center;">개인정보</th>
+       
+           <div id="start">
+            New Produt
+           </div>
+           <div id="item">
+            <table>
                 <tr>
-                    <td style="width: 333px; text-align: center;">이름</td>
-                    <td style="width: 333px; text-align: center;" id="name">name</td>
-                    <td><button id="btn1" type="button">수정하기</button></td>
+                    <td><img src="C1.jpg" onclick="location.href='purchase1.html'" style="cursor: pointer;"></td>
+                    <td><img src="C2.jpg" onclick="location.href='purchase2.html'" style="cursor: pointer;"></td>
+                    <td><img src="C3.jpg" onclick="location.href='purchase3.html'" style="cursor: pointer;"></td>
+                    <td><img src="C4.jpg" onclick="location.href='purchase4.html'" style="cursor: pointer;"></td>
                 </tr>
                 <tr>
-                    <td style="width: 333px; text-align: center;">번호</td>
-                    <td style="width: 333px; text-align: center;" id="phone">010-1234-5678</td>
-                    <td>
-                        <button id="btn2" type="button">수정하기</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width: 333px; text-align: center;">주소</td>
-                    <td style="width:333px; text-align: center;" id="address">천안시 서북구 두정동 </td>
-                    <td>
-                        <button id="btn3" type="button">수정하기</button>
-                    </td>
+                    <td>19000원</td>
+                    <td>10000원</td>
+                    <td>13000원</td>
+                    <td>19000원</td>
                 </tr>
             </table>
-            
-       </div>
- 
+           </div>
+           <div id="item">
+            <table>
+                <tr>
+                    <td><img src="C5.jpg" onclick="location.href='purchase5.html'" style="cursor: pointer;"></td>
+                    <td><img src="C6.jpg" onclick="location.href='purchase6.html'" style="cursor: pointer;"></td>
+                    <td><img src="C7.jpg" onclick="location.href='purchase7.html'" style="cursor: pointer;"></td>
+                    <td><img src="C8.jpg" onclick="location.href='purchase8.html'" style="cursor: pointer;"></td>
+                </tr>
+                <tr>
+                    <td>19000원</td>
+                    <td>10000원</td>
+                    <td>13000원</td>
+                    <td>19000원</td>
+                </tr>
+            </table>
+           </div>
+
 
         
     </section>
@@ -125,69 +133,3 @@
     </footer>
 </body>
 </html>
-<script>
-const editbtn1 = document.getElementById('btn1');
-const editable1 = document.getElementById('name');
-
-const editbtn2 = document.getElementById('btn2');
-const editable2 = document.getElementById('phone');
-
-const editbtn3 = document.getElementById('btn3');
-const editable3 = document.getElementById('address');
-
-editbtn1.addEventListener('click',function(){
-if(!editable1.isContentEditable){
-    
-    editable1.contentEditable='true';
-    editable1.style.background='white';
-    editbtn1.innerHTML="저장";
-    // editable1.style.border="solid 1px black";
-    editbtn1.style.background='linear-gradient(45deg, Violet, Orange)';
-  
-}
-else{
-    editable1.contentEditable='false';
-    editbtn1.innerHTML="수정하기";
-    // editable1.style.border="solid 0px black";
-    editbtn1.style.background='white';
-    editable1.style.background='none';
-}
-
-});
-
-editbtn2.addEventListener('click',function(){
-if(!editable2.isContentEditable){
-    editable2.style.background='white';
-    editable2.contentEditable='true';
-    editbtn2.innerHTML="저장";
-    editbtn2.style.background='linear-gradient(45deg, Violet, Orange)';
-  
-}
-else{
-    editable2.contentEditable='false';
-    editbtn2.innerHTML="수정하기";
-    editbtn2.style.background='white';
-    editable2.style.background='none';
-}
-
-});
-
-editbtn3.addEventListener('click',function(){
-if(!editable3.isContentEditable){
-    editable3.style.background='white';
-    editable3.contentEditable='true';
-    editbtn3.innerHTML="저장";
-    editbtn3.style.background='linear-gradient(45deg, Violet, Orange)';
-  
-}
-else{
-    editable3.contentEditable='false';
-    editbtn3.innerHTML="수정하기";
-    editbtn3.style.background='white';
-    editable3.style.background='none';
-}
-
-});
-
-
-</script>

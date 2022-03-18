@@ -14,75 +14,80 @@ const output = {
         res.render("login");
     },
     register: (req, res) => {
-        res.render("models/member");
+        res.render("member");
     },
 
     //메인화면
     home: (req, res) => {
-        res.render("models/main");
+        res.render("main");
     },
     main: (req, res) => {
-        res.render("models/main2")
+        res.render("main2")
     },
 
     //구매화면 구성(메인화면)
     purchase1: (req, res) => {
-        res.render("home/purchase1");
+        res.render("purchase1");
     },
     purchase2: (req, res) => {
-        res.render("home/purchase2");
+        res.render("purchase2");
     },
     purchase3: (req, res) => {
-        res.render("home/purchase3");
+        res.render("purchase3");
     },
     purchase4: (req, res) => {
-        res.render("home/purchase4");
+        res.render("purchase4");
     },
     purchase5: (req, res) => {
-        res.render("home/purchase5");
+        res.render("purchase5");
     },
     purchase6: (req, res) => {
-        res.render("home/purchase6");
+        res.render("purchase6");
     },
     purchase7: (req, res) => {
-        res.render("home/purchase7");
+        res.render("purchase7");
     },
     purchase8: (req, res) => {
-        res.render("home/purchase8");
+        res.render("purchase8");
     },
 
     //구매페이지(coat)
     coat: (req, res) => {
-        res.render("home/Coat");
+        res.render("Coat");
     },
     coat1: (req, res) => {
-        res.render("home/Coat1");
+        res.render("Coat1");
     },
     coat2: (req, res) => {
-        res.render("home/Coat2");
+        res.render("Coat2");
     },
     coat3: (req, res) => {
-        res.render("home/Coat3");
+        res.render("Coat3");
     },
     coat4: (req, res) => {
-        res.render("home/Coat4");
+        res.render("Coat4");
     },
     coat5: (req, res) => {
-        res.render("home/Coat5");
+        res.render("Coat5");
     },
     coat6: (req, res) => {
-        res.render("home/Coat6");
+        res.render("Coat6");
     },
     coat7: (req, res) => {
-        res.render("home/Coat7");
+        res.render("Coat7");
     },
     coat8: (req, res) => {
-        res.render("home/Coat8");
+        res.render("Coat8");
     },
 
     //마이페이지
     mypage: (req, res) => {
-        res.render("home/mypage");
+        res.render("mypage",
+            user = JSON.stringify(req.body.id),
+            phone = JSON.stringify(req.body.phone),
+            address = JSON.stringify(req.body.address)
+        );
+        console.log(req.body);
     }
 }
 
@@ -92,21 +97,35 @@ const controller = {
         connection.query('SELECT * FROM member', (err, rows) => {
             if (err) throw err;
             res.send(rows);
-            console.log(req.session);
+            // console.log(req.body);
         })
     },
 
     //웹 회원가입
     insertMembers: async (req, res) => {
         //javascript 구조분해할당
-        const { name, gender, phone, address, id, password } = req.body;
-        const sql = `INSERT INTO member VALUES
-        ('${name}','${gender}','${phone}','${address}','${id}','${password}');`
-        connection.query(
-            sql, (err, rows) => {
-                if (err) throw err;
-                res.send("yes");
-            })
+        const user_id = req.body.id;
+        connection.query("SELECT id FROM member WHERE id = ?", [user_id], function (err, rows) {
+            if (rows[0].id != user_id) {
+                const { name, gender, phone, address, id, pwd } = req.body;
+                const sql = `INSERT INTO member VALUES ('${id}','${pwd}','${name}','${address}','${gender}','${phone}');`
+                connection.query(sql, (err, rows) => {
+                    if (err) throw err;
+                    connection.query("CREATE TABLE " + id + "_buy" + " (info CHAR(100), sum int(30))", function (err, result) {
+                        if (err) throw err;
+                    })
+                    connection.query("CREATE TABLE " + id + "_basket" + " (info CHAR(100), sum int(30))", function (err, result) {
+                        if (err) throw err;
+                    })
+                    if (err) reject(`${err}`);
+
+                    res.send({ success: true });
+                })
+            }
+            else {
+                res.send({ success: false, msg: "중복된 아이디가 있습니다." });
+            }
+        })
     },
 
     //아이디 중복 체크
@@ -139,19 +158,19 @@ const controller = {
                             req.session.loginData = id;
                             req.session.loginCheck = true;
                             req.session.save(function () {
-                                res.json({success: true});
+                                res.send({ success: true });
                             });
                             console.log('로그인 한 계정 : ' + req.session.loginData + ", " + req.session.loginCheck);
                         }
                         else {
                             console.log(rows[0].id + id);
-                            res.json({success: false, msg: "비밀번호가 틀렸습니다."});
+                            res.send({ success: false, msg: "비밀번호가 틀렸습니다." });
                         }
                     })
                 }
                 else {
                     console.log(rows[0].id);
-                    res.json({success: false, msg: "존재하지 않는 아이디입니다."});
+                    res.send({ success: false, msg: "존재하지 않는 아이디입니다." });
                 }
             }
         })
@@ -172,16 +191,17 @@ const controller = {
         }
     },
 
-    //회원정보
-    searchMembers: async (req, res) => {
+    mypage: async (req, res) => {
         const id = req.session.loginData;
         const logincheck = req.session.loginCheck;
+        console.log(id);
         connection.query('SELECT * FROM member WHERE id = ?', [id], function (err, rows) {
             if (logincheck === true) {
                 if (rows[0].id === id) {
                     connection.query('SELECT name, address, phone, gender, id FROM member WHERE id = ?', [id], (err, rows) => {
                         if (err) throw err;
-                        res.send(rows);
+                        res.send(rows[0]);
+                        console.log(rows[0]);
                     })
                 }
             }

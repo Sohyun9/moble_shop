@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Member</title>
-    <style type="text/css">
-        @import url(member.css);
-    </style>
+    <title>회원가입</title>
+    <link rel="stylesheet" href="/css/member.css">
+    <script src="js/register.js" defer></script>
   
 </head>
 <body>
@@ -17,7 +16,7 @@
         <!-- content-->
         <div id="box">
             <div id="header">
-                <a href="#" target="_blank"><h2>Moble Shop</h2></a>
+                <a href="/" target="_blank"><h2>Moble Shop</h2></a>
             </div>
             <div id="content">
 
@@ -61,9 +60,12 @@
                 <!--adress-->
                 <div>
                     <h3 class="join_title">주소</h3>
-                    <input type="text" id="sample4_postcode" placeholder="우편번호+상세주소" style="width: 300px;">
-                    <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+                    <span class="box int_name">
+                    <input type="text" id="address" placeholder="우편번호+상세주소" class="int">
+                    </span>
+                    <input type="button" onclick="address()" value="우편번호 찾기"><br>
                 </div>
+
 
 
             
@@ -95,7 +97,7 @@
                 <div>
                     <h3 class="join_title"><label for="phoneNo">휴대전화</label></h3>
                     <span class="box int_mobile">
-                        <input type="tel" id="mobile" class="int" maxlength="16" placeholder="전화번호 입력">
+                        <input type="tel" id="phone" class="int" maxlength="16" placeholder="전화번호 입력">
                     </span>
                     <span class="error_next_box"></span>    
                 </div>
@@ -103,7 +105,7 @@
 
                 <!-- JOIN BTN-->
                 <div class="btn_area">
-                    <button type="button" id="btnJoin" onclick="btn();location.href='login.html'">
+                    <button type="button" id="btnJoin">
                         <span>가입하기</span>
                     </button>
                 </div>
