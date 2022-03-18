@@ -4,12 +4,87 @@ const session = require('express-session');
 const app = express();
 const bodyParser = require('body-parser')
 const http = require('http');
-const request = require('request');
-const fs = require('fs').promises;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(session());
 app.use(express.json());
+
+const output = {
+    login: (req, res) => {
+        res.render("login");
+    },
+    register: (req, res) => {
+        res.render("models/member");
+    },
+
+    //메인화면
+    home: (req, res) => {
+        res.render("models/main");
+    },
+    main: (req, res) => {
+        res.render("models/main2")
+    },
+
+    //구매화면 구성(메인화면)
+    purchase1: (req, res) => {
+        res.render("home/purchase1");
+    },
+    purchase2: (req, res) => {
+        res.render("home/purchase2");
+    },
+    purchase3: (req, res) => {
+        res.render("home/purchase3");
+    },
+    purchase4: (req, res) => {
+        res.render("home/purchase4");
+    },
+    purchase5: (req, res) => {
+        res.render("home/purchase5");
+    },
+    purchase6: (req, res) => {
+        res.render("home/purchase6");
+    },
+    purchase7: (req, res) => {
+        res.render("home/purchase7");
+    },
+    purchase8: (req, res) => {
+        res.render("home/purchase8");
+    },
+
+    //구매페이지(coat)
+    coat: (req, res) => {
+        res.render("home/Coat");
+    },
+    coat1: (req, res) => {
+        res.render("home/Coat1");
+    },
+    coat2: (req, res) => {
+        res.render("home/Coat2");
+    },
+    coat3: (req, res) => {
+        res.render("home/Coat3");
+    },
+    coat4: (req, res) => {
+        res.render("home/Coat4");
+    },
+    coat5: (req, res) => {
+        res.render("home/Coat5");
+    },
+    coat6: (req, res) => {
+        res.render("home/Coat6");
+    },
+    coat7: (req, res) => {
+        res.render("home/Coat7");
+    },
+    coat8: (req, res) => {
+        res.render("home/Coat8");
+    },
+
+    //마이페이지
+    mypage: (req, res) => {
+        res.render("home/mypage");
+    }
+}
 
 const controller = {
     //윈도우즈 응용프로그램에 들어가는 전체 회원 정보 출력
@@ -55,28 +130,28 @@ const controller = {
     //로그인
     loginMembers: async (req, res) => {
         var id = req.body.id;
-        var password = req.body.password;
+        var password = req.body.pwd;
         connection.query('SELECT * FROM member WHERE id = ?', [id], function (err, rows) {
             if (rows.length) {
                 if (rows[0].id === id) {
-                    connection.query('SELECT * FROM member WHERE password = ?', [password], function (err, rows) {
-                        if (rows[0].password === password) {
+                    connection.query('SELECT * FROM member WHERE pwd = ?', [password], function (err, rows) {
+                        if (rows[0].pwd === password) {
                             req.session.loginData = id;
                             req.session.loginCheck = true;
                             req.session.save(function () {
-                                res.json('ok');
+                                res.json({success: true});
                             });
-                            console.log('로그인 한 계정 : ' + rows[0].id + ", " + req.session.loginCheck);
+                            console.log('로그인 한 계정 : ' + req.session.loginData + ", " + req.session.loginCheck);
                         }
                         else {
                             console.log(rows[0].id + id);
-                            res.json('pwerror');
+                            res.json({success: false, msg: "비밀번호가 틀렸습니다."});
                         }
                     })
                 }
                 else {
                     console.log(rows[0].id);
-                    res.json('iderror');
+                    res.json({success: false, msg: "존재하지 않는 아이디입니다."});
                 }
             }
         })
@@ -185,4 +260,7 @@ const controller = {
     }
 }
 
-module.exports = controller;
+module.exports = {
+    controller,
+    output
+};

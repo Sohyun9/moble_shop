@@ -1,35 +1,38 @@
+const express = require('express');
+const bodyParser = require('body-parser');
 const controller = require("../controllers/controller.js");
 const router = require("express").Router();
-const session = require('express-session');
+const app = express();
 app.use(bodyParser.json());
 
 router.route('/')
-    .get(controller.getMembers)
-    .post(controller.insertMembers)
+    .get(controller.controller.getMembers)
+    .post(controller.controller.insertMembers)
 
 router.route('/login')
-    .post(controller.loginMembers)
+    .get(controller.output.login)
+    .post(controller.controller.loginMembers)
 
 router.route('/logout')
-    .get(controller.logoutMembers)
+    .get(controller.controller.logoutMembers)
 
 router.route('/drop')
-    .get(controller.deleteMember)
+    .get(controller.controller.deleteMember)
 
 router.route('/member')
-    .get(controller.searchMembers)
+    .get(controller.controller.searchMembers)
 
 router.route('/loginCheck')
-    .get(controller.loginCheck)
+    .get(controller.controller.loginCheck)
 
 router.route('/login/member/edit')
-    .post(controller.infoUpdate)
+    .post(controller.controller.infoUpdate)
 
 //id를 고유값으로 설정하였기 때문에 중복확인을 위한 API
 router.route('/idcheck')
-    .get(controller.checkId)
+    .get(controller.controller.checkId)
 
 router.route('/idtest')
-    .post(controller.login)
+    .post(controller.controller.login)
 
 module.exports = router;

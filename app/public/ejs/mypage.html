@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <title>연습</title>
+    <style>
+        @import url(mypage.css);
+    </style>
+
+</head>
+<body>
+
+    <header>
+        <div id="top">
+            <h2 onclick="location.href='main2.html'">Moble shop</h2>
+        </div>
+        <div id="login">
+            <a href="main.html">로그아웃</a>  <a href="">마이페이지</a>
+        </div>
+    </header>
+
+    <nav>
+        <div id="table">
+            <div id="menu">
+                <ul class="bar">
+                    <li>
+                        <a href="#">아우터</a>
+                        <ul class="submenu">
+                            <li><a href="Coat.html">코트</a></li>
+                            <li><a href="#">패딩</a></li>
+                            <li><a href="#">가디건</a></li>
+                            <li><a href="#">재킷</a></li>
+                            <li><a href="#">기타</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">상의</a>
+                        <ul class="submenu">
+                            <li><a href="#">맨투맨</a></li>
+                            <li><a href="#">후드</a></li>
+                            <li><a href="#">니트</a></li>
+                            <li><a href="#">셔츠</a></li>
+                            <li><a href="#">기타</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">하의</a>
+                        <ul class="submenu">
+                            <li><a href="#">데님</a></li>
+                            <li><a href="#">숏</a></li>
+                            <li><a href="#">슬랙스</a></li>
+                            <li><a href="#">트레이닝</a></li>
+                            <li><a href="#">기타</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">모자</a>
+                        <ul class="submenu1">
+                            <li><a href="#">캡</a></li>
+                            <li><a href="#">비니</a></li>
+                            <li><a href="#">페도라</a></li>
+                            <li><a href="#">기타</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">가방</a>
+                        <ul class="submenu">
+                            <li><a href="#">백팩</a></li>
+                            <li><a href="#">메신저백</a></li>
+                            <li><a href="#">클러치백</a></li>
+                            <li><a href="#">캐리어</a></li>
+                            <li><a href="#">기타</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+       
+    </nav>
+    
+
+    <section>
+       <div id="my">
+            <h2>My page</h2>
+            <table style="margin-top: 50px; width: 100%;">
+                <th style="height: 50px; text-align: center;">개인정보</th>
+                <tr>
+                    <td style="width: 333px; text-align: center;">이름</td>
+                    <td style="width: 333px; text-align: center;" id="name">name</td>
+                    <td><button id="btn1" type="button">수정하기</button></td>
+                </tr>
+                <tr>
+                    <td style="width: 333px; text-align: center;">번호</td>
+                    <td style="width: 333px; text-align: center;" id="phone">010-1234-5678</td>
+                    <td>
+                        <button id="btn2" type="button">수정하기</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 333px; text-align: center;">주소</td>
+                    <td style="width:333px; text-align: center;" id="address">천안시 서북구 두정동 </td>
+                    <td>
+                        <button id="btn3" type="button">수정하기</button>
+                    </td>
+                </tr>
+            </table>
+            
+       </div>
+ 
+
+        
+    </section>
+
+    <footer>
+        <div id="number">
+            <p class="a">문의사항 010-1234-5678</p>
+            <p class="b">(주)Moble</p>
+            <p class="b">주소: 충청남도 천안시 동남구 대흥로 255 </p>
+        </div>
+
+    </footer>
+</body>
+</html>
+<script>
+const editbtn1 = document.getElementById('btn1');
+const editable1 = document.getElementById('name');
+
+const editbtn2 = document.getElementById('btn2');
+const editable2 = document.getElementById('phone');
+
+const editbtn3 = document.getElementById('btn3');
+const editable3 = document.getElementById('address');
+
+editbtn1.addEventListener('click',function(){
+if(!editable1.isContentEditable){
+    
+    editable1.contentEditable='true';
+    editable1.style.background='white';
+    editbtn1.innerHTML="저장";
+    // editable1.style.border="solid 1px black";
+    editbtn1.style.background='linear-gradient(45deg, Violet, Orange)';
+  
+}
+else{
+    editable1.contentEditable='false';
+    editbtn1.innerHTML="수정하기";
+    // editable1.style.border="solid 0px black";
+    editbtn1.style.background='white';
+    editable1.style.background='none';
+}
+
+});
+
+editbtn2.addEventListener('click',function(){
+if(!editable2.isContentEditable){
+    editable2.style.background='white';
+    editable2.contentEditable='true';
+    editbtn2.innerHTML="저장";
+    editbtn2.style.background='linear-gradient(45deg, Violet, Orange)';
+  
+}
+else{
+    editable2.contentEditable='false';
+    editbtn2.innerHTML="수정하기";
+    editbtn2.style.background='white';
+    editable2.style.background='none';
+}
+
+});
+
+editbtn3.addEventListener('click',function(){
+if(!editable3.isContentEditable){
+    editable3.style.background='white';
+    editable3.contentEditable='true';
+    editbtn3.innerHTML="저장";
+    editbtn3.style.background='linear-gradient(45deg, Violet, Orange)';
+  
+}
+else{
+    editable3.contentEditable='false';
+    editbtn3.innerHTML="수정하기";
+    editbtn3.style.background='white';
+    editable3.style.background='none';
+}
+
+});
+
+
+</script>
