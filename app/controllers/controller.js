@@ -4,6 +4,7 @@ const session = require('express-session');
 const app = express();
 const bodyParser = require('body-parser')
 const http = require('http');
+const { add } = require('nodemon/lib/rules');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(session());
@@ -79,16 +80,6 @@ const output = {
     coat8: (req, res) => {
         res.render("Coat8");
     },
-
-    //마이페이지
-    mypage: (req, res) => {
-        res.render("mypage",
-            user = JSON.stringify(req.body.id),
-            phone = JSON.stringify(req.body.phone),
-            address = JSON.stringify(req.body.address)
-        );
-        console.log(req.body);
-    }
 }
 
 const controller = {
@@ -106,7 +97,7 @@ const controller = {
         //javascript 구조분해할당
         const user_id = req.body.id;
         connection.query("SELECT id FROM member WHERE id = ?", [user_id], function (err, rows) {
-            if (rows[0].id != user_id) {
+            if (rows.id != user_id) {
                 const { name, gender, phone, address, id, pwd } = req.body;
                 const sql = `INSERT INTO member VALUES ('${id}','${pwd}','${name}','${address}','${gender}','${phone}');`
                 connection.query(sql, (err, rows) => {
@@ -180,10 +171,9 @@ const controller = {
     logoutMembers: async (req, res) => {
         if (req.session.loginData) {
             console.log('로그아웃 성공');
-            res.send("yes");
             res.clearCookie();
             req.session.destroy(function () {
-                req.session;
+                res.redirect('/');
             });
         } else {
             console.log('로그인 상태가 아닙니다.');
@@ -191,17 +181,23 @@ const controller = {
         }
     },
 
+    //마이페이지
     mypage: async (req, res) => {
         const id = req.session.loginData;
         const logincheck = req.session.loginCheck;
-        console.log(id);
+        var user_id , user_pwd
         connection.query('SELECT * FROM member WHERE id = ?', [id], function (err, rows) {
             if (logincheck === true) {
                 if (rows[0].id === id) {
-                    connection.query('SELECT name, address, phone, gender, id FROM member WHERE id = ?', [id], (err, rows) => {
+                    connection.query('SELECT name, address, phone, gender, id, pwd FROM member WHERE id = ?', [id], (err, rows) => {
                         if (err) throw err;
-                        res.send(rows[0]);
-                        console.log(rows[0]);
+                        res.render("mypage", {
+                            id: rows[0].id,
+                            name: rows[0].name,
+                            pwd: rows[0].pwd,
+                            phone: rows[0].phone,
+                            address: rows[0].address
+                        });
                     })
                 }
             }
@@ -209,6 +205,13 @@ const controller = {
                 res.send("로그인 상태가 아닙니다.")
             }
         })
+        res.render("infoUpdate", {
+            id: rows[0].id,
+            name: rows[0].name,
+            pwd: rows[0].pwd,
+            phone: rows[0].phone,
+            address: rows[0].address
+        });
     },
 
     //테스트용 로그인 확인
@@ -223,14 +226,15 @@ const controller = {
 
     //회원정보 수정
     infoUpdate: async (req, res) => {
-        const name = req.body.name;
-        const address = req.body.address;
-        const id = req.body.id;
-        const password = req.body.password;
+        var id = req.body.id;
+        var address = req.body.address;
+        var pwd = req.body.pwd;
+        var name = req.body.name;
+        var phone = req.body.phone;
+        console.log(id);
         //우선 id를 고유키값으로 수정되지 않게 구현
-        connection.query('UPDATE member SET address=?, name=?, password=?,  WHERE id=?', [address, id, password, name], function (err, rows) {
-            console.log(name + address + id + password);
-            res.send("ok");
+        connection.query('UPDATE member SET address=?, name=?, pwd=?, phone=? WHERE id=?', [address, name, pwd, phone, id], function (err, rows) {
+            res.redirect('/main/mypage');
         })
     },
 

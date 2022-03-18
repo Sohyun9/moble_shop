@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="/css/mypage.css">
     <script src="js/mypage.js" defer></script>
     
-
 </head>
 <body>
     <header>
@@ -18,7 +17,7 @@
             <h2 onclick="location.href='/main'">Moble shop</h2>
         </div>
         <div id="login">
-            <a href="/login">로그아웃</a>  <a href="/main/mypage">마이페이지</a>
+            <a href="/logout">로그아웃</a>  <a href="/main/mypage">마이페이지</a>
         </div>
     </header>
 
@@ -82,36 +81,59 @@
     </nav>
     
     <section>
-       <div id="my">
-            <h2>My page</h2>
-            <table style="margin-top: 50px; width: 100%;">
-                <th style="height: 50px; text-align: center;">개인정보</th>
-                <tr>
-                    <td style="width: 333px; text-align: center;">이름</td>
-                    <td style="width: 333px; text-align: center;" id="name"><%=user%></td>
-                    <td><button id="btn1" type="button">수정하기</button></td>
-                </tr>
-                <tr>
-                    <td style="width: 333px; text-align: center;">번호</td>
-                    <td style="width: 333px; text-align: center;" id="phone"></input>
-                    <td>
-                        <button id="btn2" type="button">수정하기</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width: 333px; text-align: center;">주소</td>
-                    <td style="width:333px; text-align: center;" id="address"></input>
-                    <td>
-                        <button id="btn3" type="button">수정하기</button>
-                    </td>
-                </tr>
-            </table>
-            
-       </div>
+        <div id="my">
+             <h2>My page</h2>
+             <table style="margin-top: 50px; width: 100%;">
+                 <th style="height: 50px; text-align: center;">개인정보</th>
+                 <th><button id="btn1" type="button" style="margin: auto 0;" onclick="location.href='/infoUpdate'">수정하기</button></th>
+                 
+                 <tr>
+                     <td style="width: 333px; text-align: center;">이름</td>
+                     <td style="width: 333px; text-align: center;" id="name"><%=name%></td>
+                   
+                 </tr>
+                 <tr>
+                     <td style="width: 333px; text-align: center;">아이디</td>
+                     <td style="width: 333px; text-align: center;" id="id"><%=id%></td>
+                 </tr>
+                 <tr>
+                     <td style="width: 333px; text-align: center;">비밀번호</td>
+                     <td style="width:333px; text-align: center;" id="pwd" contenteditable="true"><%=pwd%></td>
+                    
+                 </tr>
+                 <tr>
+                     <td style="width: 333px; text-align: center;">전화번호</td>
+                     <td style="width:333px; text-align: center;" id="phone" contenteditable="true"><%=phone%></td>
+                 
+                 </tr>
+                 <tr>
+                     <td style="width: 333px; text-align: center;">주소</td>
+                     <td style="width:333px; text-align: center;" id="address" contenteditable="true"><%=address%></td>
+                 </tr>
+             </table>
+             
+             <table border="1" style="margin: 0 auto; margin-top: 25px; width: 100%;">
+                 <th style="height: 50px; width: 200px;">장바구니</th>
+                 <th style="width: 800px;">주문내역</th>
+                 <th><button type="button" id="btn" style="margin: 0 auto;">삭제</button></th>
+                 <tr id="tr">
+                     <td style="width: 200px;"><input type="checkbox" style="margin-left:50%;" id="check"></td>
+                     <td id="/" style="width: 100px; height: 100px;">
+                         <img src="C1.jpg" style="width: 100px; height: 100px; margin-top: 10px;" id="img">
+                        
+                     </td>
+                     
+                 </tr>
+                 
+             </table>
+             
  
+        </div>
+       
+         
+     </section>
 
-        
-    </section>
+
 
     <footer>
         <div id="number">
@@ -123,14 +145,14 @@
     </footer>
 </body>
 </html>
-<script>
+<!-- <script>
 const editbtn1 = document.getElementById('btn1');
-const editable1 = document.getElementById('name');
+const editable1 = document.getElementById('pwd');
 
 const editbtn2 = document.getElementById('btn2');
 const editable2 = document.getElementById('phone');
 
-const editbtn3 = document.getElementById('btn3');
+const editbtn3 = document.getElementById('btn4');
 const editable3 = document.getElementById('address');
 
 editbtn1.addEventListener('click',function(){
@@ -141,7 +163,6 @@ if(!editable1.isContentEditable){
     editbtn1.innerHTML="저장";
     // editable1.style.border="solid 1px black";
     editbtn1.style.background='linear-gradient(45deg, Violet, Orange)';
-   
   
 }
 else{
@@ -150,11 +171,12 @@ else{
     // editable1.style.border="solid 0px black";
     editbtn1.style.background='white';
     editable1.style.background='none';
+    // editbtn1.location.href="/infoUpdate";
 }
 
 });
 
-editbtn2.addEventListener('click',function(){
+editbtn1.addEventListener('click',function(){
 if(!editable2.isContentEditable){
     editable2.style.background='white';
     editable2.contentEditable='true';
@@ -164,14 +186,14 @@ if(!editable2.isContentEditable){
 }
 else{
     editable2.contentEditable='false';
-    editbtn2.innerHTML="수정하기";
-    editbtn2.style.background='white';
+    editbtn1.innerHTML="수정하기";
+    editbtn1.style.background='white';
     editable2.style.background='none';
 }
 
 });
 
-editbtn3.addEventListener('click',function(){
+editbtn1.addEventListener('click',function(){
 if(!editable3.isContentEditable){
     editable3.style.background='white';
     editable3.contentEditable='true';
@@ -181,13 +203,26 @@ if(!editable3.isContentEditable){
 }
 else{
     editable3.contentEditable='false';
-    editbtn3.innerHTML="수정하기";
-    editbtn3.style.background='white';
+    editbtn1.innerHTML="수정하기";
+    editbtn1.style.background='white';
     editable3.style.background='none';
 }
 
 });
 
+var check = document.getElementById("check");
+var img = document.getElementById("img");
+var C = document.getElementById("C");
+var btn = document.getElementById("btn");
+var tr= document.getElementById("tr");
 
 
-</script>
+btn.addEventListener("click",function(){
+if(check.checked){
+    tr.style.display="none";
+    
+}
+
+})
+
+</script> -->

@@ -1,14 +1,8 @@
 const mypagebtn = document.getElementById("btn1");
 
-mypagebtn.addEventListener("click", login);
+mypagebtn.addEventListener("click", mypage);
 
-function login() {
-    const req = {
-        name: body.name,
-        phone: body.phone,
-        address: body.address
-    };
-
+function mypage() {
     fetch("/main/mypage", {
         method: "POST",
         headers: {
