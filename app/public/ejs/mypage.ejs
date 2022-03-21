@@ -85,6 +85,7 @@
     </nav>
     
     <section>
+        <form action="info_change" method="post">
         <div id="my">
              <h2>My page</h2>
              <table style="margin-top: 50px; width: 100%; border-collapse: collapse;" border="1" >
@@ -93,7 +94,7 @@
                  
                  <tr>
                      <td style="width: 333px; text-align: center;">이름</td>
-                     <td style="width: 333px; text-align: center;" id="name"><%=name%></td>
+                     <td style="width: 333px; text-align: center;" id="name" name="name" required><%=name%></td>
                    
                  </tr>
                  <tr>
@@ -114,6 +115,7 @@
                      <td style="width: 333px; text-align: center;">주소</td>
                      <td style="width:333px; text-align: center;" id="address" contenteditable="true"><%=address%></td>
                  </tr>
+                </form>
                  <tr>
                      <td colspan="2"><input type="button" value="회원탈퇴" style="margin-left: 45%; color: white; background-color: black;" onclick="button();"></td>
                      <script>

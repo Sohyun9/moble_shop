@@ -219,6 +219,7 @@ const controller = {
                             phone: rows[0].phone,
                             address: rows[0].address
                         })
+                        console.log(req.body);
                     })
                 }
             }
@@ -233,6 +234,46 @@ const controller = {
         // const logincheck = req.session.loginCheck;
         connection.query('SELECT * FROM product WHERE image_name = "winterc1"', function (err, rows) {
             res.render('winterc1', {name:rows[0].name, url:rows[0].url, price:rows[0].price, image_name: rows[0].image_name});
+        })
+    },
+
+    winterc2: async (req, res) => {
+        // const id = req.session.loginData;
+        // const logincheck = req.session.loginCheck;
+        connection.query('SELECT * FROM product WHERE image_name = "winterc2"', function (err, rows) {
+            res.render('winterc2', {name:rows[0].name, url:rows[0].url, price:rows[0].price, image_name: rows[0].image_name});
+        })
+    },
+
+    winterc3: async (req, res) => {
+        // const id = req.session.loginData;
+        // const logincheck = req.session.loginCheck;
+        connection.query('SELECT * FROM product WHERE image_name = "winterc3"', function (err, rows) {
+            res.render('winterc3', {name:rows[0].name, url:rows[0].url, price:rows[0].price, image_name: rows[0].image_name});
+        })
+    },
+
+    winterc4: async (req, res) => {
+        // const id = req.session.loginData;
+        // const logincheck = req.session.loginCheck;
+        connection.query('SELECT * FROM product WHERE image_name = "winterc4"', function (err, rows) {
+            res.render('winterc4', {name:rows[0].name, url:rows[0].url, price:rows[0].price, image_name: rows[0].image_name});
+        })
+    },
+
+    winterc5: async (req, res) => {
+        // const id = req.session.loginData;
+        // const logincheck = req.session.loginCheck;
+        connection.query('SELECT * FROM product WHERE image_name = "winterc5"', function (err, rows) {
+            res.render('winterc5', {name:rows[0].name, url:rows[0].url, price:rows[0].price, image_name: rows[0].image_name});
+        })
+    },
+
+    winterc6: async (req, res) => {
+        // const id = req.session.loginData;
+        // const logincheck = req.session.loginCheck;
+        connection.query('SELECT * FROM product WHERE image_name = "winterc6"', function (err, rows) {
+            res.render('winterc6', {name:rows[0].name, url:rows[0].url, price:rows[0].price, image_name: rows[0].image_name});
         })
     },
 
@@ -299,6 +340,7 @@ const controller = {
     //API 테스트용
     rasberry: async (req, res) => {
         var color = req.body.data;
+        req.body.name
         var id = "1234";
         if (color) {
             connection.query(`INSERT into rasberry values ('${id}', '${color}')`, (err, rows) => {
