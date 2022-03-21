@@ -236,6 +236,7 @@ const controller = {
         })
     },
 
+    
     //테스트용 로그인 확인
     loginCheck: async (req, res) => {
         if (req.session.loginData) {
