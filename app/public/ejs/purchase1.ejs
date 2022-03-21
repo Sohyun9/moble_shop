@@ -48,10 +48,14 @@ function btn2(){
 
     <header>
         <div id="top">
-            <h2 onclick="location.href='main2.html'">Moble shop</h2>
+            <h2 onclick="location.href='/main'">Moble shop</h2>
         </div>
         <div id="login">
-            <a href="login.html">로그아웃</a>  <a href="mypage.html">마이페이지</a>
+            <a href="/login">로그아웃</a>  <a href="/main/mypage">마이페이지</a>
+            <div>
+                오늘의 기온 <span id="C"></span>
+                <script src="/js/main2.js" defer></script>
+            </div>
         </div>
     </header>
 
@@ -62,7 +66,7 @@ function btn2(){
                     <li>
                         <a href="#">아우터</a>
                         <ul class="submenu">
-                            <li><a href="Coat.html">코트</a></li>
+                            <li><a href="/Coat">코트</a></li>
                             <li><a href="#">패딩</a></li>
                             <li><a href="#">가디건</a></li>
                             <li><a href="#">재킷</a></li>
@@ -119,7 +123,7 @@ function btn2(){
         <table>
             <th>빅로고 후드티</th>
             <tr>
-                <td><img src="C1.jpg"></td>
+                <td><img src="image/C1.jpg"></td>
                 <td>
                     <p>가격 19000원</p>
                     <p>
@@ -155,7 +159,7 @@ function btn2(){
       </div>
       <div id="foot">
            <p id="re">추천상품</p>
-            <div id="recomand"><img src="C2.jpg"> <img src="C3.jpg"> <img src="C4.jpg"> <img src="C5.jpg"></div>
+            <div id="recomand"><img src="image/C2.jpg"> <img src="image/C3.jpg"> <img src="image/C4.jpg"> <img src="image/C5.jpg"></div>
       </div>  
 
     </section>
