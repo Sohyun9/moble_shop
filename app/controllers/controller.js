@@ -4,7 +4,6 @@ const session = require('express-session');
 const app = express();
 const bodyParser = require('body-parser')
 const http = require('http');
-const { add } = require('nodemon/lib/rules');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(session());
@@ -17,7 +16,9 @@ const output = {
     register: (req, res) => {
         res.render("member");
     },
-
+    infoUpdate: (req, res) => {
+        res.render("infoUpdate");
+    },
     //메인화면
     home: (req, res) => {
         res.render("main");
@@ -25,7 +26,6 @@ const output = {
     main: (req, res) => {
         res.render("main2")
     },
-
     //구매화면 구성(메인화면)
     purchase1: (req, res) => {
         res.render("purchase1");
@@ -50,6 +50,26 @@ const output = {
     },
     purchase8: (req, res) => {
         res.render("purchase8");
+    },
+
+    //겨울옷
+    winterc1: (req, res) => {
+        res.render("winterc1");
+    },
+    winterc2: (req, res) => {
+        res.render("winterc2");
+    },
+    winterc3: (req, res) => {
+        res.render("winterc3");
+    },
+    winterc4: (req, res) => {
+        res.render("winterc4");
+    },
+    winterc5: (req, res) => {
+        res.render("winterc5");
+    },
+    winterc6: (req, res) => {
+        res.render("winterc6");
     },
 
     //구매페이지(coat)
@@ -156,12 +176,14 @@ const controller = {
                         else {
                             console.log(rows[0].id + id);
                             res.send({ success: false, msg: "비밀번호가 틀렸습니다." });
+                            alert("비밀번호가 틀렸습니다.");
                         }
                     })
                 }
                 else {
                     console.log(rows[0].id);
                     res.send({ success: false, msg: "존재하지 않는 아이디입니다." });
+                    alert("존재하지 않는 아이디입니다.");
                 }
             }
         })
@@ -185,7 +207,6 @@ const controller = {
     mypage: async (req, res) => {
         const id = req.session.loginData;
         const logincheck = req.session.loginCheck;
-        var user_id , user_pwd
         connection.query('SELECT * FROM member WHERE id = ?', [id], function (err, rows) {
             if (logincheck === true) {
                 if (rows[0].id === id) {
@@ -197,7 +218,7 @@ const controller = {
                             pwd: rows[0].pwd,
                             phone: rows[0].phone,
                             address: rows[0].address
-                        });
+                        })
                     })
                 }
             }
@@ -205,13 +226,6 @@ const controller = {
                 res.send("로그인 상태가 아닙니다.")
             }
         })
-        res.render("infoUpdate", {
-            id: rows[0].id,
-            name: rows[0].name,
-            pwd: rows[0].pwd,
-            phone: rows[0].phone,
-            address: rows[0].address
-        });
     },
 
     //테스트용 로그인 확인
@@ -231,32 +245,37 @@ const controller = {
         var pwd = req.body.pwd;
         var name = req.body.name;
         var phone = req.body.phone;
-        console.log(id);
+        console.log(req.body);
         //우선 id를 고유키값으로 수정되지 않게 구현
         connection.query('UPDATE member SET address=?, name=?, pwd=?, phone=? WHERE id=?', [address, name, pwd, phone, id], function (err, rows) {
-            res.redirect('/main/mypage');
+            // res.redirect('/main/mypage');
         })
     },
 
     //회원탈퇴
     deleteMember: async (req, res) => {
-        const id = req.body.id;
-
+        const user = req.session.loginData;
         if (req.session.loginCheck === true) {
-            if (req.session.loginData === id) {
-                connection.query('DELETE FROM member WHERE id = ?', [id], (err, rows) => {
+            if (req.session.loginData) {
+                connection.query('DELETE FROM member WHERE id = ?', [user], (err, rows) => {
                     if (err) throw err;
+                    connection.query("DROP TABLE " + user + "_buy", function (err, result) {
+                        if (err) throw err;
+                    })
+                    connection.query("DROP TABLE " + user + "_basket", function (err, result) {
+                        if (err) throw err;
+                    })
                     console.log("테이블 데이터 삭제 성공");
-                    res.send("yes");
+                    res.redirect("/");
                 })
             }
 
             else {
-                res.send("error");
+                res.send("1error");
             }
         }
         else {
-            res.send("error");
+            res.send("2error");
         }
     },
 
@@ -269,18 +288,16 @@ const controller = {
     },
 
     //API 테스트용
-    login: async (req, res) => {
-        var opts = {
-            host: 'localhost',
-            port: 4003,
-            method: 'POST',
-            path: '/test',
-            headers: {}
-        };
-
-        http.request(opts, function (req, res) {
-            res.send(req.body);
-        })
+    rasberry: async (req, res) => {
+        var color = req.body.data;
+        var id = "1234";
+        if (color) {
+            connection.query(`INSERT into rasberry values ('${id}', '${color}')`, (err, rows) => {
+                if (err) throw err;
+                res.redirect('/main/mypage');
+                console.log("데이터 저장 완료");
+            })
+        }
     }
 }
 

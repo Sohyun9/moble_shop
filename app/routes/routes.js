@@ -26,6 +26,17 @@ router.route('/logout')
     .get(controller.controller.logoutMembers)
     .post(controller.controller.logoutMembers)
 
+router.route('/infoUpdate')
+    .get(controller.output.infoUpdate)
+    .post(controller.controller.infoUpdate)
+
+router.route('/rasberry')
+    .post(controller.controller.rasberry)
+
+router.route("/delete")
+    .get(controller.controller.deleteMember)
+    .post(controller.controller.deleteMember)
+
 router.route('/purchase1')
     .get(controller.output.purchase1)
 
@@ -50,20 +61,32 @@ router.route('/purchase7')
 router.route('/purchase8')
     .get(controller.output.purchase8)
 
+router.route('/winterc1')
+    .get(controller.output.winterc1)
+
+router.route('/winterc2')
+    .get(controller.output.winterc2)
+
+router.route('/winterc3')
+    .get(controller.output.winterc3)
+
+router.route('/winterc4')
+    .get(controller.output.winterc4)
+
+router.route('/winterc5')
+    .get(controller.output.winterc5)
+
+router.route('/winterc6')
+    .get(controller.output.winterc6)
+
 router.route('/drop')
     .get(controller.controller.deleteMember)
 
 router.route('/loginCheck')
     .get(controller.controller.loginCheck)
 
-router.route('/infoUpdate')
-    .get(controller.controller.infoUpdate)
-
 //id를 고유값으로 설정하였기 때문에 중복확인을 위한 API
 router.route('/idcheck')
     .get(controller.controller.checkId)
-
-router.route('/idtest')
-    .post(controller.controller.login)
 
 module.exports = router;

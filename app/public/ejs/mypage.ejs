@@ -18,6 +18,10 @@
         </div>
         <div id="login">
             <a href="/logout">로그아웃</a>  <a href="/main/mypage">마이페이지</a>
+            <div>
+                오늘의 기온 <span id="C"></span>
+                <script src="/js/wether.js" defer></script>
+            </div>
         </div>
     </header>
 
@@ -83,7 +87,7 @@
     <section>
         <div id="my">
              <h2>My page</h2>
-             <table style="margin-top: 50px; width: 100%;">
+             <table style="margin-top: 50px; width: 100%; border-collapse: collapse;" border="1" >
                  <th style="height: 50px; text-align: center;">개인정보</th>
                  <th><button id="btn1" type="button" style="margin: auto 0;" onclick="location.href='/infoUpdate'">수정하기</button></th>
                  
@@ -109,6 +113,15 @@
                  <tr>
                      <td style="width: 333px; text-align: center;">주소</td>
                      <td style="width:333px; text-align: center;" id="address" contenteditable="true"><%=address%></td>
+                 </tr>
+                 <tr>
+                     <td colspan="2"><input type="button" value="회원탈퇴" style="margin-left: 45%; color: white; background-color: black;" onclick="button();"></td>
+                     <script>
+                        function button(){
+                            alert("회원탈퇴 되었습니다");
+                            window.location="/delete";
+                        }
+                     </script>
                  </tr>
              </table>
              
@@ -145,6 +158,7 @@
     </footer>
 </body>
 </html>
+
 <!-- <script>
 const editbtn1 = document.getElementById('btn1');
 const editable1 = document.getElementById('pwd');
