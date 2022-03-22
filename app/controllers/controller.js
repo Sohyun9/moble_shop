@@ -72,6 +72,10 @@ const output = {
     //     res.render("winterc6");
     // },
 
+    popup: (req, res) => {
+        res.render("Popup");
+    },
+
     //구매페이지(coat)
     coat: (req, res) => {
         res.render("Coat");
@@ -122,10 +126,10 @@ const controller = {
                 const sql = `INSERT INTO member VALUES ('${id}','${pwd}','${name}','${address}','${gender}','${phone}');`
                 connection.query(sql, (err, rows) => {
                     if (err) throw err;
-                    connection.query("CREATE TABLE " + id + "_buy" + " (info CHAR(100), sum int(30))", function (err, result) {
+                    connection.query("CREATE TABLE " + id + "_buy" + " (image_name CHAR(20), name CHAR(20), price int(20))", function (err, result) {
                         if (err) throw err;
                     })
-                    connection.query("CREATE TABLE " + id + "_basket" + " (info CHAR(100), sum int(30))", function (err, result) {
+                    connection.query("CREATE TABLE " + id + "_basket" + " (image_name CHAR(20), name CHAR(20), price int(20))", function (err, result) {
                         if (err) throw err;
                     })
                     if (err) reject(`${err}`);
@@ -139,52 +143,22 @@ const controller = {
         })
     },
 
-    //아이디 중복 체크
-    checkId: async (req, res) => {
-        const user_id = req.body.id;
-
-        connection.query("SELECT id FROM member WHERE id = ?", [user_id], function (err, rows) {
-            console.log(rows);
-            var checkid = "0";
-
-            if (rows[0] === undefined) {
-                checkid = "1";
-                res.send(checkid);
-            }
-            else {
-                res.send(checkid);
-            }
-        })
-    },
-
     //로그인
     loginMembers: async (req, res) => {
         var id = req.body.id;
         var password = req.body.pwd;
-        connection.query('SELECT * FROM member WHERE id = ?', [id], function (err, rows) {
+        connection.query('SELECT * FROM member WHERE id = ? and pwd = ?', [id, password], function (err, rows) {
+            if (err) throw err;
             if (rows.length) {
-                if (rows[0].id === id) {
-                    connection.query('SELECT * FROM member WHERE pwd = ?', [password], function (err, rows) {
-                        if (rows[0].pwd === password) {
-                            req.session.loginData = id;
-                            req.session.loginCheck = true;
-                            req.session.save(function () {
-                                res.send({ success: true });
-                            });
-                            console.log('로그인 한 계정 : ' + req.session.loginData + ", " + req.session.loginCheck);
-                        }
-                        else {
-                            console.log(rows[0].id + id);
-                            res.send({ success: false, msg: "비밀번호가 틀렸습니다." });
-                            alert("비밀번호가 틀렸습니다.");
-                        }
-                    })
-                }
-                else {
-                    console.log(rows[0].id);
-                    res.send({ success: false, msg: "존재하지 않는 아이디입니다." });
-                    alert("존재하지 않는 아이디입니다.");
-                }
+                req.session.loginData = id;
+                req.session.loginCheck = true;
+                req.session.save(function () {
+                    res.json({ success: true });
+                });
+                console.log('로그인 한 계정 : ' + req.session.loginData + ", " + req.session.loginCheck);
+            }
+            else {
+                res.json({ success: false, msg: "존재하지 않는 아이디 이거나 패스워드가 틀렸습니다." });
             }
         })
     },
@@ -213,13 +187,12 @@ const controller = {
                     connection.query('SELECT name, address, phone, gender, id, pwd FROM member WHERE id = ?', [id], (err, rows) => {
                         if (err) throw err;
                         res.render("mypage", {
-                            id: rows[0].id,
+                            user: rows[0].id,
                             name: rows[0].name,
                             pwd: rows[0].pwd,
                             phone: rows[0].phone,
                             address: rows[0].address
                         })
-                        console.log(req.body);
                     })
                 }
             }
@@ -229,65 +202,6 @@ const controller = {
         })
     },
 
-    winterc1: async (req, res) => {
-        // const id = req.session.loginData;
-        // const logincheck = req.session.loginCheck;
-        connection.query('SELECT * FROM product WHERE image_name = "winterc1"', function (err, rows) {
-            res.render('winterc1', {name:rows[0].name, url:rows[0].url, price:rows[0].price, image_name: rows[0].image_name});
-        })
-    },
-
-    winterc2: async (req, res) => {
-        // const id = req.session.loginData;
-        // const logincheck = req.session.loginCheck;
-        connection.query('SELECT * FROM product WHERE image_name = "winterc2"', function (err, rows) {
-            res.render('winterc2', {name:rows[0].name, url:rows[0].url, price:rows[0].price, image_name: rows[0].image_name});
-        })
-    },
-
-    winterc3: async (req, res) => {
-        // const id = req.session.loginData;
-        // const logincheck = req.session.loginCheck;
-        connection.query('SELECT * FROM product WHERE image_name = "winterc3"', function (err, rows) {
-            res.render('winterc3', {name:rows[0].name, url:rows[0].url, price:rows[0].price, image_name: rows[0].image_name});
-        })
-    },
-
-    winterc4: async (req, res) => {
-        // const id = req.session.loginData;
-        // const logincheck = req.session.loginCheck;
-        connection.query('SELECT * FROM product WHERE image_name = "winterc4"', function (err, rows) {
-            res.render('winterc4', {name:rows[0].name, url:rows[0].url, price:rows[0].price, image_name: rows[0].image_name});
-        })
-    },
-
-    winterc5: async (req, res) => {
-        // const id = req.session.loginData;
-        // const logincheck = req.session.loginCheck;
-        connection.query('SELECT * FROM product WHERE image_name = "winterc5"', function (err, rows) {
-            res.render('winterc5', {name:rows[0].name, url:rows[0].url, price:rows[0].price, image_name: rows[0].image_name});
-        })
-    },
-
-    winterc6: async (req, res) => {
-        // const id = req.session.loginData;
-        // const logincheck = req.session.loginCheck;
-        connection.query('SELECT * FROM product WHERE image_name = "winterc6"', function (err, rows) {
-            res.render('winterc6', {name:rows[0].name, url:rows[0].url, price:rows[0].price, image_name: rows[0].image_name});
-        })
-    },
-
-    
-    //테스트용 로그인 확인
-    loginCheck: async (req, res) => {
-        if (req.session.loginData) {
-            res.send()
-        }
-        else {
-            res.send({ loggedIn: false })
-        }
-    },
-
     //회원정보 수정
     infoUpdate: async (req, res) => {
         var id = req.body.id;
@@ -295,10 +209,11 @@ const controller = {
         var pwd = req.body.pwd;
         var name = req.body.name;
         var phone = req.body.phone;
-        console.log(req.body);
+        console.log(id, address, pwd, name, phone);
+
         //우선 id를 고유키값으로 수정되지 않게 구현
         connection.query('UPDATE member SET address=?, name=?, pwd=?, phone=? WHERE id=?', [address, name, pwd, phone, id], function (err, rows) {
-            // res.redirect('/main/mypage');
+            res.redirect('/main/mypage');
         })
     },
 
@@ -337,10 +252,9 @@ const controller = {
         }
     },
 
-    //API 테스트용
+    //라즈베리파이
     rasberry: async (req, res) => {
         var color = req.body.data;
-        req.body.name
         var id = "1234";
         if (color) {
             connection.query(`INSERT into rasberry values ('${id}', '${color}')`, (err, rows) => {
@@ -349,7 +263,83 @@ const controller = {
                 console.log("데이터 저장 완료");
             })
         }
-    }
+    },
+
+    //테스트용 로그인 확인
+    loginCheck: async (req, res) => {
+        if (req.session.loginData) {
+            res.send()
+        }
+        else {
+            res.send({ loggedIn: false })
+        }
+    },
+
+    //아이디 중복 체크
+    checkId: async (req, res) => {
+        const user_id = req.body.id;
+
+        connection.query("SELECT id FROM member WHERE id = ?", [user_id], function (err, rows) {
+            console.log(rows);
+            var checkid = "0";
+
+            if (rows[0] === undefined) {
+                checkid = "1";
+                res.send(checkid);
+            }
+            else {
+                res.send(checkid);
+            }
+        })
+    },
+
+    winterc1: async (req, res) => {
+        // const id = req.session.loginData;
+        // const logincheck = req.session.loginCheck;
+        connection.query('SELECT * FROM product WHERE image_name = "winterc1"', function (err, rows) {
+            res.render('winterc1', { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
+        })
+    },
+
+    winterc2: async (req, res) => {
+        // const id = req.session.loginData;
+        // const logincheck = req.session.loginCheck;
+        connection.query('SELECT * FROM product WHERE image_name = "winterc2"', function (err, rows) {
+            res.render('winterc2', { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
+        })
+    },
+
+    winterc3: async (req, res) => {
+        // const id = req.session.loginData;
+        // const logincheck = req.session.loginCheck;
+        connection.query('SELECT * FROM product WHERE image_name = "winterc3"', function (err, rows) {
+            res.render('winterc3', { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
+        })
+    },
+
+    winterc4: async (req, res) => {
+        // const id = req.session.loginData;
+        // const logincheck = req.session.loginCheck;
+        connection.query('SELECT * FROM product WHERE image_name = "winterc4"', function (err, rows) {
+            res.render('winterc4', { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
+        })
+    },
+
+    winterc5: async (req, res) => {
+        // const id = req.session.loginData;
+        // const logincheck = req.session.loginCheck;
+        connection.query('SELECT * FROM product WHERE image_name = "winterc5"', function (err, rows) {
+            res.render('winterc5', { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
+        })
+    },
+
+    winterc6: async (req, res) => {
+        // const id = req.session.loginData;
+        // const logincheck = req.session.loginCheck;
+        connection.query('SELECT * FROM product WHERE image_name = "winterc6"', function (err, rows) {
+            res.render('winterc6', { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
+        })
+    },
 }
 
 module.exports = {

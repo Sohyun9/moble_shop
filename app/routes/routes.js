@@ -26,8 +26,7 @@ router.route('/logout')
     .get(controller.controller.logoutMembers)
     .post(controller.controller.logoutMembers)
 
-router.route('/infoUpdate')
-    .get(controller.output.infoUpdate)
+router.route('/main/infoUpdate')
     .post(controller.controller.infoUpdate)
 
 router.route('/rasberry')
@@ -37,6 +36,10 @@ router.route("/delete")
     .get(controller.controller.deleteMember)
     .post(controller.controller.deleteMember)
 
+router.route("/popup")
+    .get(controller.output.popup)
+    
+//구매페이지 메인
 router.route('/purchase1')
     .get(controller.output.purchase1)
 
@@ -61,6 +64,7 @@ router.route('/purchase7')
 router.route('/purchase8')
     .get(controller.output.purchase8)
 
+//겨울옷
 router.route('/winterc1')
     .get(controller.controller.winterc1)
     .post(controller.controller.winterc1)

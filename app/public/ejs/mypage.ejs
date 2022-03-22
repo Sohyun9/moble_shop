@@ -85,12 +85,42 @@
     </nav>
     
     <section>
-        <form action="info_change" method="post">
+        <!-- <form action="infoUpdate" method="post"> -->
         <div id="my">
              <h2>My page</h2>
              <table style="margin-top: 50px; width: 100%; border-collapse: collapse;" border="1" >
                  <th style="height: 50px; text-align: center;">개인정보</th>
-                 <th><button id="btn1" type="button" style="margin: auto 0;" onclick="location.href='/infoUpdate'">수정하기</button></th>
+                 <th><button id="btn1" type="submit" style="margin: auto 0;">수정하기</button></th>
+                 <script>
+                     const BTN = document.getElementById("btn1");
+                     
+                     BTN.addEventListener("click", function(){
+                         alert(document.querySelector("#name").innerHTML);
+
+                         let url = "/main/infoUpdate";
+
+                         let xhr = new XMLHttpRequest();
+                         xhr.open("POST", url);
+
+                         xhr.setRequestHeader("Content-Type", "application/json");
+
+                         xhr.onreadystatechange = function () {
+                         if (xhr.readyState === 4) {
+                             console.log(xhr.responseText);
+                         }};
+
+                        let data = `{
+                        "id": "qwer321",
+                        "name": "이소현",
+                        "pwd" : "qwer54321",
+                        "address" : "충청북도",
+                        "phone" : 1028596663
+                        }`;
+
+                        xhr.send(data);
+
+                     })
+                 </script>
                  
                  <tr>
                      <td style="width: 333px; text-align: center;">이름</td>
@@ -99,23 +129,23 @@
                  </tr>
                  <tr>
                      <td style="width: 333px; text-align: center;">아이디</td>
-                     <td style="width: 333px; text-align: center;" id="id"><%=id%></td>
+                     <td style="width: 333px; text-align: center;" id="id" user="user" required><%=user%></td>
                  </tr>
                  <tr>
                      <td style="width: 333px; text-align: center;">비밀번호</td>
-                     <td style="width:333px; text-align: center;" id="pwd" contenteditable="true"><%=pwd%></td>
+                     <td style="width:333px; text-align: center;" id="pwd" contenteditable="true" pwd="pwd" required><%=pwd%></td>
                     
                  </tr>
                  <tr>
                      <td style="width: 333px; text-align: center;">전화번호</td>
-                     <td style="width:333px; text-align: center;" id="phone" contenteditable="true"><%=phone%></td>
+                     <td style="width:333px; text-align: center;" id="phone" contenteditable="true" phone="phone" required><%=phone%></td>
                  
                  </tr>
                  <tr>
                      <td style="width: 333px; text-align: center;">주소</td>
-                     <td style="width:333px; text-align: center;" id="address" contenteditable="true"><%=address%></td>
+                     <td style="width:333px; text-align: center;" id="address" contenteditable="true" address="address" required><%=address%></td>
                  </tr>
-                </form>
+                <!-- </form> -->
                  <tr>
                      <td colspan="2"><input type="button" value="회원탈퇴" style="margin-left: 45%; color: white; background-color: black;" onclick="button();"></td>
                      <script>
@@ -125,8 +155,14 @@
                         }
                      </script>
                  </tr>
+
              </table>
-             
+              <input type="button" id="ra" value="주문내역보기" onclick="showPopup()" style="margin-left: 43%; margin-top: 10px;">
+              <script>
+                  function showPopup(){
+                    window.open("/popup","A","width=500,height=400,left=100,top=50");
+                    }
+              </script>
              <table border="1" style="margin: 0 auto; margin-top: 25px; width: 100%;">
                  <th style="height: 50px; width: 200px;">장바구니</th>
                  <th style="width: 800px;">주문내역</th>
