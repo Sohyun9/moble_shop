@@ -72,10 +72,6 @@ const output = {
     //     res.render("winterc6");
     // },
 
-    popup: (req, res) => {
-        res.render("Popup");
-    },
-
     //구매페이지(coat)
     coat: (req, res) => {
         res.render("Coat");
@@ -173,7 +169,6 @@ const controller = {
             });
         } else {
             console.log('로그인 상태가 아닙니다.');
-            res.send("no");
         }
     },
 
@@ -250,6 +245,26 @@ const controller = {
             const id = req.session.loginData;
             connection.query('')
         }
+    },
+
+    //구매이력으로 이동
+    buy: async (req, res) => {
+        var id = req.session.loginData;
+        var name = req.body.name;
+        var price = req.body.price;
+
+        connection.query(`INSERT into ` + id + `_buy values ('${name}', '${price}')`, (err, rows)=>{
+            console.log("구매이력 저장");
+        })
+    },
+
+    popup: async (req, res) => {
+        var id = req.session.loginData;
+
+        connection.query("SELECT * FROM " + id + "_buy", (err, rows) => {
+            console.log(rows);
+            res.render("Popup", {name : rows[0].name, price : rows[0].price});
+        })
     },
 
     //라즈베리파이
@@ -340,6 +355,33 @@ const controller = {
             res.render('winterc6', { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
         })
     },
+
+    purchase1: async (req, res) => {
+        // const id = req.session.loginData;
+        // const logincheck = req.session.loginCheck;
+        connection.query('SELECT * FROM product WHERE image_name = "C1"', function (err, rows) {
+            res.render('purchase1', { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
+        })
+    },
+
+    Coat6: async (req, res) => {
+        // const id = req.session.loginData;
+        // const logincheck = req.session.loginCheck;
+        connection.query('SELECT * FROM product WHERE image_name = "Coat6"', function (err, rows) {
+            res.render('Coat6', { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
+        })
+    },
+
+    // home: async (req, res) => {
+    //     connection.query('SELECT price FROM product', function (err, rows){
+    //         res.render("main", {price1: rows[0].price, price2: rows[1].price, price3: rows[2].price, price4: rows[3].price, price5: rows[4].price, price6: rows[5].price});
+    //     })
+    // },
+    // main: async (req, res) => {
+    //     connection.query('SELECT price FROM product', function (err, rows){
+    //         res.render("main2", {price1: rows[0].price, price2: rows[1].price, price3: rows[2].price, price4: rows[3].price, price5: rows[4].price, price6: rows[5].price});
+    //     })
+    // },
 }
 
 module.exports = {

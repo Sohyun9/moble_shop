@@ -5,8 +5,15 @@ const c1 = document.getElementById("c1"),
     c5 = document.getElementById("c5"),
     c6 = document.getElementById("c6"),
     c7 = document.getElementById("c7"),
-    c8 = document.getElementById("c8");
-
+    c8 = document.getElementById("c8"),
+    p1 = document.getElementById("p1"),
+    p2 = document.getElementById("p2"),
+    p3 = document.getElementById("p3"),
+    p4 = document.getElementById("p4"),
+    p5 = document.getElementById("p5"),
+    p6 = document.getElementById("p6"),
+    p7 = document.getElementById("p7"),
+    p8 = document.getElementById("p8");
 
 
 const getJSON = function(url, callback) {
@@ -34,41 +41,49 @@ const getJSON = function(url, callback) {
       alert('예상치 못한 오류 발생.' + err);
     } else {
 
-        if(data.main.temp<=11){
+        if(data.main.temp<=15){
             c1.src = "image/winterc1.jpg";
+            p1.innerHTML = "19000원";
             c1.onclick=function(){
                 window.location="/winterc1";
             }
             c2.src = "image/winterc2.jpg";
+            p2.innerHTML = "20000원";
             c2.onclick=function(){
                 window.location="/winterc2";
             }
             c3.src = "image/winterc3.jpg";
+            p3.innerHTML = "15000원";
             c3.onclick=function(){
                 window.location="/winterc3";
             }
             c4.src = "image/winterc4.jpg";
+            p4.innerHTML = "23000원";
             c4.onclick=function(){
                 window.location="/winterc4";
             }
             c5.src = "image/winterc5.jpg";
+            p5.innerHTML = "20000원";
             c5.onclick=function(){
                 window.location="/winterc5";
             }
             c6.src = "image/winterc6.jpg";
+            p6.innerHTML = "21000원";
             c6.onclick=function(){
                 window.location="/winterc6";
             }
             c7.src = "image/C1.jpg";
+            p7.innerHTML = "12000원";
             c7.onclick=function(){
                 window.location="/purchase1";
             }
             c8.src = "image/Coat6.jpg";
+            p8.innerHTML = "27000원";
             c8.onclick=function(){
                 window.location="/Coat6";
             }
         }
-        else if(11<data.main.temp<=20){
+        else if(15<data.main.temp<=20){
             c1.src = "image/C2.jpg";
             c1.onclick=function(){
                 window.location="/purchase2";

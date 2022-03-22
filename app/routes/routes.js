@@ -37,11 +37,14 @@ router.route("/delete")
     .post(controller.controller.deleteMember)
 
 router.route("/popup")
-    .get(controller.output.popup)
-    
+    .get(controller.controller.popup)
+
+router.route("/main/buy")
+    .post(controller.controller.buy)
+
 //구매페이지 메인
 router.route('/purchase1')
-    .get(controller.output.purchase1)
+    .get(controller.controller.purchase1)
 
 router.route('/purchase2')
     .get(controller.output.purchase2)
@@ -88,6 +91,34 @@ router.route('/winterc5')
 router.route('/winterc6')
     .get(controller.controller.winterc6)
     .post(controller.controller.winterc6)
+
+//코트페이지
+router.route('/Coat')
+    .get(controller.output.coat)
+
+router.route('/Coat1')
+    .get(controller.output.coat1)
+
+router.route('/Coat2')
+    .get(controller.output.coat2)
+
+router.route('/Coat3')
+    .get(controller.output.coat3)
+
+router.route('/Coat4')
+    .get(controller.output.coat4)
+
+router.route('/Coat5')
+    .get(controller.output.coat5)
+
+router.route('/Coat6')
+    .get(controller.controller.Coat6)
+
+router.route('/Coat7')
+    .get(controller.output.coat7)
+
+router.route('/Coat8')
+    .get(controller.output.coat8)
 
 router.route('/drop')
     .get(controller.controller.deleteMember)

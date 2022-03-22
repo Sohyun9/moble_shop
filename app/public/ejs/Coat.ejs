@@ -7,52 +7,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
     <title>연습</title>
-    <style>
-        @import url(purchase1.css);
-    </style>
-    <script>
-
-    function count(type)  {
-    // 결과를 표시할 element
-    const resultElement = document.getElementById('result');
-  
-    // 현재 화면에 표시된 값
-    let number = resultElement.innerText;
-  
-    // 더하기/빼기
-    if(type === 'plus') {
-    number = parseInt(number) + 1;
-    }else if(type === 'minus')  {
-    number = parseInt(number) - 1;
-    }
-    if (number < 1) {
-      alert('더이상 줄일수 없습니다.');
-      number = 1;
-    }
-  
-  // 결과 출력
-  resultElement.innerText = number;
-}
-                       
-function btn(){
-    alert("구매완료");
-}
-function btn2(){
-    alert("장바구니에 추가하였습니다");
-}
-
-    </script>
-
+    <link rel="stylesheet" href="/css/Coat.css">
+    
 
 </head>
 <body>
 
     <header>
         <div id="top">
-            <h2 onclick="location.href='main2.html'">Moble shop</h2>
+            <h2 onclick="location.href='/main'">Moble shop</h2>
         </div>
         <div id="login">
-            <a href="login.html">로그아웃</a>  <a href="mypage.html">마이페이지</a>
+            <a href="/">로그아웃</a>  <a href="/main/mypage">마이페이지</a>
+            <div>
+                오늘의 기온 <span id="C"></span>
+                <script src="/js/wether.js" defer></script>
+            </div>
         </div>
     </header>
 
@@ -63,7 +33,7 @@ function btn2(){
                     <li>
                         <a href="#">아우터</a>
                         <ul class="submenu">
-                            <li><a href="Coat.html">코트</a></li>
+                            <li><a href="/Coat">코트</a></li>
                             <li><a href="#">패딩</a></li>
                             <li><a href="#">가디건</a></li>
                             <li><a href="#">재킷</a></li>
@@ -112,62 +82,58 @@ function btn2(){
                 </ul>
             </div>
         </div>
-        
-     
+       
     </nav>
-    <section>
-      <div id="sell">
-        <table>
-            <th>코트6</th>
-            <tr>
-                <td><img src="Coat6.jpg"></td>
-                <td>
-                    <p>가격 19000원</p>
-                    <p>
-                        사이즈 <select name="size">
-                        <option value="size">size</option>
-                        <option value="S">S</option>
-                        <option value="M">M</option>
-                        <option value="L">L</option>
-                        <option value="XL">XL</option>
-                        </select>
-                    </p>
-                    <p>
-                        색상 <select name="color">
-                        <option value="색상">색상</option>
-                        <option value="검정">검정</option>
-                        <option value="파랑">파랑</option>
-                        <option value="빨강">빨강</option>
-                        </select>
-                    </p>
-                    <p>
-                        수량 <span id="result">1</span>
-                        <input type='button' onclick='count("plus")'  value='+' id="button"/>
-                        <input type='button' onclick='count("minus")'  value='-' id="button"/>
-                    </p>
-                   <p>
-                       <input type="button" value="구매하기" id="button" onclick="btn(); location.href='main2.html'">
-                       <input type="button" value="장바구니" id="button" onclick="btn2();">
-                   </p>
-                </td>
-            </tr>
-            
-        </table>
-      </div>
-      <div id="foot">
-           <p id="re">추천상품</p>
-            <div id="recomand"><img src="C2.jpg"> <img src="C3.jpg"> <img src="C4.jpg"> <img src="C5.jpg"></div>
-      </div>  
 
+    <section>
+       
+           <div id="start">
+            Coat
+           </div>
+           <div id="item">
+            <table>
+                <tr>
+                    <td><img src="image/Coat1.jpg" onclick="location.href='/Coat1'" style="cursor: pointer;" ></td>
+                    <td><img src="image/Coat2.jpg" onclick="location.href='/Coat2'" style="cursor: pointer;"></td>
+                    <td><img src="image/Coat3.jpg" onclick="location.href='/Coat3'" style="cursor: pointer;"></td>
+                    <td><img src="image/Coat4.jpg" onclick="location.href='/Coat4'" style="cursor: pointer;"></td>
+                </tr>
+                <tr>
+                    <td>19000원</td>
+                    <td>10000원</td>
+                    <td>13000원</td>
+                    <td>19000원</td>
+                </tr>
+            </table>
+           </div>
+           <div id="item">
+            <table>
+                <tr>
+                    <td><img src="image/Coat5.jpg" onclick="location.href='/Coat5'" style="cursor: pointer;"></td>
+                    <td><img src="image/Coat6.jpg" onclick="location.href='/Coat6'" style="cursor: pointer;"></td>
+                    <td><img src="image/Coat7.jpg" onclick="location.href='/Coat7'" style="cursor: pointer;"></td>
+                    <td><img src="image/Coat8.jpg" onclick="location.href='/Coat8'" style="cursor: pointer;"></td>
+                </tr>
+                <tr>
+                    <td>19000원</td>
+                    <td>10000원</td>
+                    <td>13000원</td>
+                    <td>19000원</td>
+                </tr>
+            </table>
+           </div>
+
+
+        
     </section>
 
     <footer>
         <div id="number">
-            <p class="a">문의사항 010-1234-5678</p>
-            <p class="b">(주)Moble</p>
-            <p class="b">주소: 충청남도 천안시 동남구 대흥로 255 </p>
+            문의사항 010-1234-5678
         </div>
-
+       <div>
+           (주)Moble
+       </div>
     </footer>
 </body>
 </html>
