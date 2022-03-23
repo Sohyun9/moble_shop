@@ -123,12 +123,12 @@
         <div id="sell">
             <table>
                 <th>
-                    <%=name%>
+                    <span id="name" ><%=name%></span>
                 </th> <!-- name -->
                 <tr>
-                    <td><img src="<%=url%>"></td> <!-- url -->
+                    <td><img id="url" src="<%=url%>"></td> <!-- url -->
                     <td>
-                        <p>가격 <%=price%>원</p> <!-- price -->
+                        <p>가격 <span id="price"><%=price%></span>원</p> <!-- price -->
                         <p>
                             사이즈 <select name="size">
                                 <option value="size">size</option>
@@ -182,7 +182,7 @@
     const BTN = document.getElementById("btn1");
 
     BTN.addEventListener("click", function () {
-        alert(document.querySelector("#name").innerHTML);
+        alert("구매되었습니다.");
 
         let url = "/main/buy";
 

@@ -52,6 +52,134 @@ const output = {
         res.render("purchase8");
     },
 
+    // springwarm1: (req, res) => {
+    //     res.render("springwarm1");
+    // },
+
+    springwarm2: (req, res) => {
+        res.render("springwarm2");
+    },
+
+    springwarm3: (req, res) => {
+        res.render("springwarm3");
+    },
+
+    springwarm4: (req, res) => {
+        res.render("springwarm4");
+    },
+
+    springwarm5: (req, res) => {
+        res.render("springwarm5");
+    },
+
+    springwarm6: (req, res) => {
+        res.render("springwarm6");
+    },
+
+    springwarm7: (req, res) => {
+        res.render("springwarm7");
+    },
+
+    springwarm8: (req, res) => {
+        res.render("springwarm8");
+    },
+
+    // purchase8: (req, res) => {
+    //     res.render("purchase8");
+    // },
+
+    // purchase8: (req, res) => {
+    //     res.render("purchase8");
+    // },
+
+    // purchase8: (req, res) => {
+    //     res.render("purchase8");
+    // },
+
+    // purchase8: (req, res) => {
+    //     res.render("purchase8");
+    // },
+
+    // purchase8: (req, res) => {
+    //     res.render("purchase8");
+    // },
+
+    // purchase8: (req, res) => {
+    //     res.render("purchase8");
+    // },
+
+    // purchase8: (req, res) => {
+    //     res.render("purchase8");
+    // },
+
+    // purchase8: (req, res) => {
+    //     res.render("purchase8");
+    // },
+
+    // purchase8: (req, res) => {
+    //     res.render("purchase8");
+    // },
+
+    // purchase8: (req, res) => {
+    //     res.render("purchase8");
+    // },
+
+    // purchase8: (req, res) => {
+    //     res.render("purchase8");
+    // },
+
+    // purchase8: (req, res) => {
+    //     res.render("purchase8");
+    // },
+
+    // purchase8: (req, res) => {
+    //     res.render("purchase8");
+    // },
+
+    // purchase8: (req, res) => {
+    //     res.render("purchase8");
+    // },
+
+    // purchase8: (req, res) => {
+    //     res.render("purchase8");
+    // },
+
+    // purchase8: (req, res) => {
+    //     res.render("purchase8");
+    // },
+
+    // purchase8: (req, res) => {
+    //     res.render("purchase8");
+    // },
+
+    // purchase8: (req, res) => {
+    //     res.render("purchase8");
+    // },
+
+    // purchase8: (req, res) => {
+    //     res.render("purchase8");
+    // },
+
+    // purchase8: (req, res) => {
+    //     res.render("purchase8");
+    // },
+
+    // purchase8: (req, res) => {
+    //     res.render("purchase8");
+    // },
+
+    // purchase8: (req, res) => {
+    //     res.render("purchase8");
+    // },
+
+    // purchase8: (req, res) => {
+    //     res.render("purchase8");
+    // },
+
+    // purchase8: (req, res) => {
+    //     res.render("purchase8");
+    // },
+    
     //겨울옷
     // winterc1: (req, res) => {
     //     res.render("winterc1");
@@ -119,13 +247,13 @@ const controller = {
         connection.query("SELECT id FROM member WHERE id = ?", [user_id], function (err, rows) {
             if (rows.id != user_id) {
                 const { name, gender, phone, address, id, pwd } = req.body;
-                const sql = `INSERT INTO member VALUES ('${id}','${pwd}','${name}','${address}','${gender}','${phone}');`
+                const sql = `INSERT INTO member VALUES ('${id}','${pwd}','${name}','${address}','${gender}','${phone}', '봄웜톤');`
                 connection.query(sql, (err, rows) => {
                     if (err) throw err;
-                    connection.query("CREATE TABLE " + id + "_buy" + " (image_name CHAR(20), name CHAR(20), price int(20))", function (err, result) {
+                    connection.query("CREATE TABLE " + id + "_buy" + " (name CHAR(20), price int(20))", function (err, result) {
                         if (err) throw err;
                     })
-                    connection.query("CREATE TABLE " + id + "_basket" + " (image_name CHAR(20), name CHAR(20), price int(20))", function (err, result) {
+                    connection.query("CREATE TABLE " + id + "_basket" + " (name CHAR(20), price int(20))", function (err, result) {
                         if (err) throw err;
                     })
                     if (err) reject(`${err}`);
@@ -179,14 +307,16 @@ const controller = {
         connection.query('SELECT * FROM member WHERE id = ?', [id], function (err, rows) {
             if (logincheck === true) {
                 if (rows[0].id === id) {
-                    connection.query('SELECT name, address, phone, gender, id, pwd FROM member WHERE id = ?', [id], (err, rows) => {
+                    connection.query('SELECT name, address, phone, gender, id, pwd, color FROM member WHERE id = ?', [id], (err, rows) => {
                         if (err) throw err;
+                        console.log(rows[0].color);
                         res.render("mypage", {
                             user: rows[0].id,
                             name: rows[0].name,
                             pwd: rows[0].pwd,
                             phone: rows[0].phone,
-                            address: rows[0].address
+                            address: rows[0].address,
+                            color: rows[0].color
                         })
                     })
                 }
@@ -204,11 +334,10 @@ const controller = {
         var pwd = req.body.pwd;
         var name = req.body.name;
         var phone = req.body.phone;
-        console.log(id, address, pwd, name, phone);
+        var color = req.body.color;
 
         //우선 id를 고유키값으로 수정되지 않게 구현
         connection.query('UPDATE member SET address=?, name=?, pwd=?, phone=? WHERE id=?', [address, name, pwd, phone, id], function (err, rows) {
-            res.redirect('/main/mypage');
         })
     },
 
@@ -253,7 +382,7 @@ const controller = {
         var name = req.body.name;
         var price = req.body.price;
 
-        connection.query(`INSERT into ` + id + `_buy values ('${name}', '${price}')`, (err, rows)=>{
+        connection.query(`INSERT into ` + id + `_buy values ('${name}', '${price}')`, (err, rows) => {
             console.log("구매이력 저장");
         })
     },
@@ -263,7 +392,8 @@ const controller = {
 
         connection.query("SELECT * FROM " + id + "_buy", (err, rows) => {
             console.log(rows);
-            res.render("Popup", {name : rows[0].name, price : rows[0].price});
+
+            res.render("Popup", { name1: rows[0].name, price1: rows[0].price, name2: rows[1].name, price2: rows[1].price,});
         })
     },
 
@@ -380,6 +510,36 @@ const controller = {
         })
     },
 
+    springwarm1: async (req, res) => {
+        connection.query('SELECT * FROM product WHERE image_name = "springwarm1"', function (err, rows) {
+            res.render("springwarm1", { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
+        })
+    },
+
+    springwarm2: async (req, res) => {
+        connection.query('SELECT * FROM product WHERE image_name = "springwarm2"', function (err, rows) {
+            res.render("springwarm2", { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
+        })
+    },
+
+    springwarm3: async (req, res) => {
+        connection.query('SELECT * FROM product WHERE image_name = "springwarm3"', function (err, rows) {
+            res.render("springwarm3", { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
+        })
+    },
+
+    springwarm4: async (req, res) => {
+        connection.query('SELECT * FROM product WHERE image_name = "springwarm4"', function (err, rows) {
+            res.render("springwarm4", { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
+        })
+    },
+
+    springwarm5: async (req, res) => {
+        connection.query('SELECT * FROM product WHERE image_name = "springwarm5"', function (err, rows) {
+            res.render("springwarm5", { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
+        })
+    },
+  
     Coat6: async (req, res) => {
         // const id = req.session.loginData;
         // const logincheck = req.session.loginCheck;

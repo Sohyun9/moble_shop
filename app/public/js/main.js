@@ -100,3 +100,87 @@ const getJSON = function(url, callback) {
 //   입니다.`)
     }
   });
+
+
+
+  var a=0;
+
+  change.addEventListener("click",function(){
+    a=prompt("입력해주세요","ex)1,2,3,4");
+    if(a==1){
+      c1.src ="image/springwarm1.jpg";
+      p1.innerHTML="15000원"
+      c2.src ="image/springwarm2.jpg";
+      p2.innerHTML="15000원"
+      c3.src ="image/springwarm3.jpg";
+      p3.innerHTML="15000원"
+      c4.src ="image/springwarm4.jpg";
+      p4.innerHTML="15000원"
+      c5.src ="image/springwarm5.jpg";
+      p5.innerHTML="15000원"
+      c6.src ="image/springwarm6.jpg";
+      p1.innerHTML="15000원"
+      c6.src ="image/springwarm7.jpg";
+      p7.innerHTML="15000원"
+      c8.src ="image/springwarm8.jpg";
+      p8.innerHTML="15000원"
+    }
+    else if(a==2){
+      c1.src ="image/autumnwarm1.jpg";
+      c2.src ="image/autumnwarm2.jpg";
+      c3.src ="image/autumnwarm3.jpg";
+      c4.src ="image/autumnwarm4.jpg";
+      c5.src ="image/autumnwarm5.jpg";
+      c6.src ="image/autumnwarm6.jpg";
+      c7.src ="image/autumnwarm7.jpg";
+      c8.src ="image/autumnwarm8.jpg";
+      p1.innerHTML="15000원"
+      p2.innerHTML="15000원"
+      p3.innerHTML="15000원"
+      p4.innerHTML="15000원"
+      p5.innerHTML="15000원"
+      p6.innerHTML="15000원"
+      p7.innerHTML="15000원"
+      p8.innerHTML="15000원"
+
+    }
+    else if(a==3){
+      c1.src ="image/summercool1.jpg";
+      c2.src ="image/summercool2.jpg";
+      c3.src ="image/summercool3.jpg";
+      c4.src ="image/summercool4.jpg";
+      c5.src ="image/summercool5.jpg";
+      c6.src ="image/summercool6.jpg";
+      c7.src ="image/summercool7.jpg";
+      c8.src ="image/summercool8.jpg";
+      p1.innerHTML="15000원"
+      p2.innerHTML="15000원"
+      p3.innerHTML="15000원"
+      p4.innerHTML="15000원"
+      p5.innerHTML="15000원"
+      p6.innerHTML="15000원"
+      p7.innerHTML="15000원"
+      p8.innerHTML="15000원"
+    }
+    else if(a==4){
+      c1.src ="image/wintercool1.jpg";
+      c2.src ="image/wintercool2.jpg";
+      c3.src ="image/wintercool3.jpg";
+      c4.src ="image/wintercool4.jpg";
+      c5.src ="image/wintercool5.jpg";
+      c6.src ="image/wintercool6.jpg";
+      c7.src ="image/wintercool7.jpg";
+      c8.src ="image/wintercool8.jpg";
+      p1.innerHTML="15000원"
+      p2.innerHTML="15000원"
+      p3.innerHTML="15000원"
+      p4.innerHTML="15000원"
+      p5.innerHTML="15000원"
+      p6.innerHTML="15000원"
+      p7.innerHTML="15000원"
+      p8.innerHTML="15000원"
+    }
+
+
+  })
+

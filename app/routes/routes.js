@@ -92,6 +92,38 @@ router.route('/winterc6')
     .get(controller.controller.winterc6)
     .post(controller.controller.winterc6)
 
+router.route('/springwarm1')
+    .get(controller.controller.springwarm1)
+    .post(controller.controller.springwarm1)
+
+router.route('/springwarm2')
+    .get(controller.controller.springwarm2)
+    .post(controller.controller.springwarm2)
+
+router.route('/springwarm3')
+    .get(controller.controller.springwarm3)
+    .post(controller.controller.springwarm3)
+
+router.route('/springwarm4')
+    .get(controller.controller.springwarm4)
+    .post(controller.controller.springwarm4)
+
+router.route('/springwarm5')
+    .get(controller.controller.springwarm5)
+    .post(controller.controller.springwarm5)
+
+router.route('/springwarm6')
+    .get(controller.output.springwarm6)
+// .post(controller.controller.winterc1)
+
+router.route('/springwarm7')
+    .get(controller.output.springwarm7)
+// .post(controller.controller.winterc1)
+
+router.route('/springwarm8')
+    .get(controller.output.springwarm8)
+// .post(controller.controller.winterc1)
+
 //코트페이지
 router.route('/Coat')
     .get(controller.output.coat)

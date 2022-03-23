@@ -35,7 +35,7 @@ const getJSON = function(url, callback) {
   const C = document.getElementById("C");
 
  
-  getJSON('http://api.openweathermap.org/data/2.5/weather?q=danang&appid=707ff0c3902b644c6468659c800225c0&units=metric',
+  getJSON('http://api.openweathermap.org/data/2.5/weather?q=cheonan&appid=707ff0c3902b644c6468659c800225c0&units=metric',
     function(err, data) {
     if(err !== null) {
       alert('예상치 못한 오류 발생.' + err);
@@ -131,3 +131,189 @@ const getJSON = function(url, callback) {
 //   입니다.`)
     }
   });
+
+  var a=0;
+
+  change.addEventListener("click",function(){
+    a=prompt("입력해주세요","ex)1,2,3,4");
+    if(a==1){ //봄웜톤
+      c1.src ="image/springwarm1.jpg";
+      c2.src ="image/springwarm2.jpg";
+      c3.src ="image/springwarm3.jpg";
+      c4.src ="image/springwarm4.jpg";
+      c5.src ="image/springwarm5.jpg";
+      c6.src ="image/springwarm6.jpg";
+      c7.src ="image/springwarm7.jpg";
+      c8.src ="image/springwarm8.jpg";
+      p1.innerHTML="15000원"
+      p2.innerHTML="15000원"
+      p3.innerHTML="15000원"
+      p4.innerHTML="15000원"
+      p5.innerHTML="15000원"
+      p6.innerHTML="15000원"
+      p7.innerHTML="15000원"
+      p8.innerHTML="15000원"
+      c1.onclick=function(){
+        window.location="/springwarm1";
+      }
+      c2.onclick=function(){
+        window.location="/springwarm2";
+      }
+      c3.onclick=function(){
+        window.location="/springwarm3";
+      }
+      c4.onclick=function(){
+        window.location="/springwarm4";
+      }
+      c5.onclick=function(){
+        window.location="/springwarm5";
+      }
+      c6.onclick=function(){
+        window.location="/springwarm6";
+      }
+      c7.onclick=function(){
+        window.location="/springwarm7";
+      }
+      c8.onclick=function(){
+        window.location="/springwarm8";
+      }
+    }
+    else if(a==2){//가을웜톤
+      c1.src ="image/autumnwarm1.jpg";
+      c2.src ="image/autumnwarm2.jpg";
+      c3.src ="image/autumnwarm3.jpg";
+      c4.src ="image/autumnwarm4.jpg";
+      c5.src ="image/autumnwarm5.jpg";
+      c6.src ="image/autumnwarm6.jpg";
+      c7.src ="image/autumnwarm7.jpg";
+      c8.src ="image/autumnwarm8.jpg";
+      p1.innerHTML="15000원"
+      p2.innerHTML="15000원"
+      p3.innerHTML="15000원"
+      p4.innerHTML="15000원"
+      p5.innerHTML="15000원"
+      p6.innerHTML="15000원"
+      p7.innerHTML="15000원"
+      p8.innerHTML="15000원"
+
+
+      
+      c1.onclick=function(){
+        window.location="/autumnwarm1";
+      }
+      c2.onclick=function(){
+        window.location="/autumnwarm2";
+      }
+      c3.onclick=function(){
+        window.location="/autumnwarm3";
+      }
+      c4.onclick=function(){
+        window.location="/autumnwarm4";
+      }
+      c5.onclick=function(){
+        window.location="/autumnwarm5";
+      }
+      c6.onclick=function(){
+        window.location="/autumnwarm6";
+      }
+      c7.onclick=function(){
+        window.location="/sautumnwarm7";
+      }
+      c8.onclick=function(){
+        window.location="/autumnwarm8";
+      }
+    }
+    else if(a==3){//여름쿨톤
+      c1.src ="image/summercool1.jpg";
+      c2.src ="image/summercool2.jpg";
+      c3.src ="image/summercool3.jpg";
+      c4.src ="image/summercool4.jpg";
+      c5.src ="image/summercool5.jpg";
+      c6.src ="image/summercool6.jpg";
+      c7.src ="image/summercool7.jpg";
+      c8.src ="image/summercool8.jpg";
+      p1.innerHTML="15000원"
+      p2.innerHTML="15000원"
+      p3.innerHTML="15000원"
+      p4.innerHTML="15000원"
+      p5.innerHTML="15000원"
+      p6.innerHTML="15000원"
+      p7.innerHTML="15000원"
+      p8.innerHTML="15000원"
+
+
+      c1.onclick=function(){
+        window.location="/summercool1";
+      }
+      c2.onclick=function(){
+              window.location="/summercool2";
+      }
+      c3.onclick=function(){
+              window.location="/summercool3";
+      }
+      c4.onclick=function(){
+              window.location="/summercool4";
+      }
+      c5.onclick=function(){
+              window.location="/summercool5";
+      }
+      c6.onclick=function(){
+              window.location="/summercool6";
+      }
+      c7.onclick=function(){
+              window.location="/summercool7";
+      }
+      c8.onclick=function(){
+              window.location="/summercool8";
+      }
+
+
+    }
+    else if(a==4){//겨울쿨톤
+      c1.src ="image/wintercool1.jpg";
+      c2.src ="image/wintercool2.jpg";
+      c3.src ="image/wintercool3.jpg";
+      c4.src ="image/wintercool4.jpg";
+      c5.src ="image/wintercool5.jpg";
+      c6.src ="image/wintercool6.jpg";
+      c7.src ="image/wintercool7.jpg";
+      c8.src ="image/wintercool8.jpg";
+      p1.innerHTML="15000원"
+      p2.innerHTML="15000원"
+      p3.innerHTML="15000원"
+      p4.innerHTML="15000원"
+      p5.innerHTML="15000원"
+      p6.innerHTML="15000원"
+      p7.innerHTML="15000원"
+      p8.innerHTML="15000원"
+
+      c1.onclick=function(){
+        window.location="/wintercool1";
+      }
+      c2.onclick=function(){
+            window.location="/wintercool2";
+      }
+      c3.onclick=function(){
+            window.location="/wintercool3";
+      }
+      c4.onclick=function(){
+            window.location="/wintercool4";
+      }
+      c5.onclick=function(){
+            window.location="/wintercool5";
+      }
+      c6.onclick=function(){
+            window.location="/wintercool";
+      }
+      c7.onclick=function(){
+            window.location="/wintercool7";
+      }
+      c8.onclick=function(){
+            window.location="/wintercool8";
+      }
+    }
+    
+
+  
+  })
+
