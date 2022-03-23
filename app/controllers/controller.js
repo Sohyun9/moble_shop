@@ -539,6 +539,24 @@ const controller = {
             res.render("springwarm5", { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
         })
     },
+
+    springwarm6: async (req, res) => {
+        connection.query('SELECT * FROM product WHERE image_name = "springwarm6"', function (err, rows) {
+            res.render("springwarm6", { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
+        })
+    },
+
+    springwarm7: async (req, res) => {
+        connection.query('SELECT * FROM product WHERE image_name = "springwarm7"', function (err, rows) {
+            res.render("springwarm7", { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
+        })
+    },
+
+    springwarm8: async (req, res) => {
+        connection.query('SELECT * FROM product WHERE image_name = "springwarm8"', function (err, rows) {
+            res.render("springwarm8", { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
+        })
+    },
   
     Coat6: async (req, res) => {
         // const id = req.session.loginData;
