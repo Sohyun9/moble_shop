@@ -148,8 +148,8 @@ function btn2(){
                         <input type='button' onclick='count("minus")'  value='-' id="button"/>
                     </p>
                    <p>
-                       <input type="button" value="구매하기" id="button" onclick="btn(); location.href='/main'">
-                       <input type="button" value="장바구니" id="button" onclick="btn2();">
+                    <input type="submit" value="구매하기" id="btn1" >
+                    <input type="submit" value="장바구니" id="btn2" >
                    </p>
                 </td>
             </tr>
@@ -172,4 +172,34 @@ function btn2(){
 
     </footer>
 </body>
+
+<script>
+    const BTN = document.getElementById("btn1");
+
+    BTN.addEventListener("click", function () {
+         alert(document.querySelector("#name").innerHTML);
+
+        let url = "/main/buy";
+
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", url);
+
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                console.log(xhr.responseText);
+            }
+        };
+
+        let data = `{
+                    "name": "${document.querySelector("#name").innerHTML}",
+                    "price": "${document.querySelector("#price").innerHTML}"
+                    }`;
+
+        xhr.send(data);
+
+    })
+</script>
+
 </html>

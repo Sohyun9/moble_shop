@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
     <title>연습</title>
     <link rel="stylesheet" href="/css/purchase1.css">
-
     <script>
 
         function count(type) {
@@ -53,11 +52,7 @@
             <h2 onclick="location.href='/main'">Moble shop</h2>
         </div>
         <div id="login">
-            <a href="/login">로그아웃</a> <a href="/main/mypage">마이페이지</a>
-            <div>
-                오늘의 기온 <span id="C"></span>
-                <script src="/js/main2.js" defer></script>
-            </div>
+            <a href="/">로그아웃</a> <a href="/main/mypage">마이페이지</a>
         </div>
     </header>
 
@@ -68,7 +63,7 @@
                     <li>
                         <a href="#">아우터</a>
                         <ul class="submenu">
-                            <li><a href="/Coat">코트</a></li>
+                            <li><a href="Coat.html">코트</a></li>
                             <li><a href="#">패딩</a></li>
                             <li><a href="#">가디건</a></li>
                             <li><a href="#">재킷</a></li>
@@ -123,9 +118,7 @@
     <section>
         <div id="sell">
             <table>
-                <th>
-                    <%=name%>
-                </th>
+                <th><%=name%></th>
                 <tr>
                     <td><img src="<%=url%>"></td>
                     <td>
@@ -165,7 +158,6 @@
             <p id="re">추천상품</p>
             <div id="recomand"><img src="image/C2.jpg"> <img src="image/C3.jpg"> <img src="image/C4.jpg"> <img
                     src="image/C5.jpg"></div>
-        </div>
 
     </section>
 

@@ -364,6 +364,22 @@ const controller = {
         })
     },
 
+    purchase2: async (req, res) => {
+        // const id = req.session.loginData;
+        // const logincheck = req.session.loginCheck;
+        connection.query('SELECT * FROM product WHERE image_name = "C2"', function (err, rows) {
+            res.render('purchase2', { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
+        })
+    },
+
+    purchase3: async (req, res) => {
+        // const id = req.session.loginData;
+        // const logincheck = req.session.loginCheck;
+        connection.query('SELECT * FROM product WHERE image_name = "C3"', function (err, rows) {
+            res.render('purchase3', { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
+        })
+    },
+
     Coat6: async (req, res) => {
         // const id = req.session.loginData;
         // const logincheck = req.session.loginCheck;
@@ -371,17 +387,6 @@ const controller = {
             res.render('Coat6', { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
         })
     },
-
-    // home: async (req, res) => {
-    //     connection.query('SELECT price FROM product', function (err, rows){
-    //         res.render("main", {price1: rows[0].price, price2: rows[1].price, price3: rows[2].price, price4: rows[3].price, price5: rows[4].price, price6: rows[5].price});
-    //     })
-    // },
-    // main: async (req, res) => {
-    //     connection.query('SELECT price FROM product', function (err, rows){
-    //         res.render("main2", {price1: rows[0].price, price2: rows[1].price, price3: rows[2].price, price4: rows[3].price, price5: rows[4].price, price6: rows[5].price});
-    //     })
-    // },
 }
 
 module.exports = {

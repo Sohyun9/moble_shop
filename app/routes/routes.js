@@ -47,10 +47,10 @@ router.route('/purchase1')
     .get(controller.controller.purchase1)
 
 router.route('/purchase2')
-    .get(controller.output.purchase2)
+    .get(controller.controller.purchase2)
 
 router.route('/purchase3')
-    .get(controller.output.purchase3)
+    .get(controller.controller.purchase3)
 
 router.route('/purchase4')
     .get(controller.output.purchase4)

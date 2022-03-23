@@ -7,9 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
     <title>연습</title>
-    <style>
-        @import url(purchase2.css);
-    </style>
+    <link rel="stylesheet" href="/css/purchase1.css">
     <script>
 
     function count(type)  {
@@ -49,10 +47,10 @@ function btn2(){
 
     <header>
         <div id="top">
-            <h2 onclick="location.href='main2.html'">Moble shop</h2>
+            <h2 onclick="location.href='/main'">Moble shop</h2>
         </div>
         <div id="login">
-            <a href="login.html">로그아웃</a>  <a href="mypage.html">마이페이지</a>
+            <a href="/">로그아웃</a>  <a href="/main/mypage">마이페이지</a>
         </div>
     </header>
 
@@ -63,7 +61,7 @@ function btn2(){
                     <li>
                         <a href="#">아우터</a>
                         <ul class="submenu">
-                            <li><a href="Coat.html">코트</a></li>
+                            <li><a href="/Coat">코트</a></li>
                             <li><a href="#">패딩</a></li>
                             <li><a href="#">가디건</a></li>
                             <li><a href="#">재킷</a></li>
@@ -118,11 +116,11 @@ function btn2(){
     <section>
       <div id="sell">
         <table>
-            <th>단가라 티셔츠</th>
+            <th><%=name%></th>
             <tr>
-                <td><img src="C2.jpg"></td>
+                <td><img src="<%=url%>"></td>
                 <td>
-                    <p>가격 19000원</p>
+                    <p>가격 <%=price%>원</p>
                     <p>
                         사이즈 <select name="size">
                         <option value="size">size</option>
@@ -146,8 +144,8 @@ function btn2(){
                         <input type='button' onclick='count("minus")'  value='-' id="button"/>
                     </p>
                    <p>
-                       <input type="button" value="구매하기" id="button" onclick="btn(); location.href='main2.html'">
-                       <input type="button" value="장바구니" id="button" onclick="btn2();">
+                    <input type="submit" value="구매하기" id="btn1">
+                    <input type="submit" value="장바구니" id="btn2">
                    </p>
                 </td>
             </tr>
@@ -156,7 +154,7 @@ function btn2(){
       </div>
       <div id="foot">
            <p id="re">추천상품</p>
-            <div id="recomand"><img src="C2.jpg"> <img src="C3.jpg"> <img src="C4.jpg"> <img src="C5.jpg"></div>
+            <div id="recomand"><img src="image/C2.jpg"> <img src="image/C3.jpg"> <img src="image/C4.jpg"> <img src="image/C5.jpg"></div>
       </div>  
 
     </section>
@@ -170,4 +168,34 @@ function btn2(){
 
     </footer>
 </body>
+
+<script>
+    const BTN = document.getElementById("btn1");
+
+    BTN.addEventListener("click", function () {
+        alert(document.querySelector("#name").innerHTML);
+
+        let url = "/main/buy";
+
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", url);
+
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                console.log(xhr.responseText);
+            }
+        };
+
+        let data = `{
+                    "name": "${document.querySelector("#name").innerHTML}",
+                    "price": "${document.querySelector("#price").innerHTML}"
+                    }`;
+
+        xhr.send(data);
+
+    })
+</script>
+
 </html>
