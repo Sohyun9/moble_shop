@@ -14,54 +14,25 @@
 </head>
 
 <body>
-  <table border="1" style="border-collapse:collapse; width: 100%; text-align: center;">
-    <th>이름</th>
-    <th>가격</th>
-    <tr>
-      <td>
-        <%=name1%>
-      </td>
-      <td>
-        <%=price1%>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <%=name2%>
-      </td>
-      <td>
-        <%=price2%>
-      </td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-    </tr>
 
+  <table border='1' style='border-collapse:collapse; width: 100%; text-align: center;'>
+    <tr>
+      <th>이름</th>
+      <th>가격</th>
+    </tr>
+    <% for(var i=0; i < len ; i++) { %>
 
-
-
+      <tr>
+        <td>
+          <%=name[i]%>
+        </td>
+        <td>
+          <%=price[i]%>
+        </td>
+      </tr>
+      <% } %>
   </table>
+
 </body>
 
 </html>

@@ -116,11 +116,13 @@ function btn2(){
     <section>
       <div id="sell">
         <table>
-            <th><%=name%></th>
+            <th>
+                <span id="name" ><%=name%></span>
+            </th> <!-- name -->
             <tr>
-                <td><img src="<%=url%>"></td>
+                <td><img id="url" src="<%=url%>"></td> <!-- url -->
                 <td>
-                    <p>가격 <%=price%>원</p>
+                    <p>가격 <span id="price"><%=price%></span>원</p>
                     <p>
                         사이즈 <select name="size">
                         <option value="size">size</option>

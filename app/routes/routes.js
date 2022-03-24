@@ -9,7 +9,8 @@ router.route('/')
     .get(controller.output.home)
 
 router.route('/main')
-    .get(controller.output.main)
+    .get(controller.controller.main)
+    .post(controller.controller.main)
 
 router.route('/register')
     .get(controller.output.register)
@@ -19,26 +20,29 @@ router.route('/login')
     .get(controller.output.login)
     .post(controller.controller.loginMembers)
 
-router.route('/main/mypage')
-    .get(controller.controller.mypage)
-
 router.route('/logout')
     .get(controller.controller.logoutMembers)
     .post(controller.controller.logoutMembers)
-
-router.route('/main/infoUpdate')
-    .post(controller.controller.infoUpdate)
-
-router.route('/rasberry')
-    .post(controller.controller.rasberry)
 
 router.route("/delete")
     .get(controller.controller.deleteMember)
     .post(controller.controller.deleteMember)
 
+router.route('/main/mypage')
+    .get(controller.controller.mypage)
+
+router.route('/main/infoUpdate')
+    .post(controller.controller.infoUpdate)
+
+//라즈베리로부터 퍼스널컬러 가져오기
+router.route('/rasberry')
+    .post(controller.controller.rasberry)
+
+//구매이력페이지
 router.route("/popup")
     .get(controller.controller.popup)
 
+//구매 API
 router.route("/main/buy")
     .post(controller.controller.buy)
 
@@ -92,6 +96,7 @@ router.route('/winterc6')
     .get(controller.controller.winterc6)
     .post(controller.controller.winterc6)
 
+//봄웜톤
 router.route('/springwarm1')
     .get(controller.controller.springwarm1)
     .post(controller.controller.springwarm1)
@@ -113,16 +118,88 @@ router.route('/springwarm5')
     .post(controller.controller.springwarm5)
 
 router.route('/springwarm6')
-    .get(controller.output.springwarm6)
-// .post(controller.controller.winterc1)
+    .get(controller.controller.springwarm6)
+    .post(controller.controller.springwarm6)
 
 router.route('/springwarm7')
-    .get(controller.output.springwarm7)
-// .post(controller.controller.winterc1)
+    .get(controller.controller.springwarm7)
+    .post(controller.controller.springwarm7)
 
 router.route('/springwarm8')
-    .get(controller.output.springwarm8)
-// .post(controller.controller.winterc1)
+    .get(controller.controller.springwarm8)
+    .post(controller.controller.springwarm8)
+
+//여름쿨톤
+router.route('/summercool1')
+    .get(controller.controller.summercool1)
+    .post(controller.controller.summercool1)
+
+router.route('/summercool2')
+    .get(controller.controller.summercool2)
+    .post(controller.controller.summercool2)
+
+router.route('/summercool3')
+    .get(controller.controller.summercool3)
+    .post(controller.controller.summercool3)
+
+//가을웜톤
+router.route('/autumnwarm1')
+    .get(controller.controller.autumnwarm1)
+    .post(controller.controller.autumnwarm1)
+
+router.route('/autumnwarm2')
+    .get(controller.controller.autumnwarm2)
+    .post(controller.controller.autumnwarm2)
+
+router.route('/autumnwarm3')
+    .get(controller.controller.autumnwarm3)
+    .post(controller.controller.autumnwarm3)
+
+//겨울쿨톤
+router.route('/wintercool1')
+    .get(controller.controller.wintercool1)
+    .post(controller.controller.wintercool1)
+
+router.route('/wintercool2')
+    .get(controller.controller.wintercool2)
+    .post(controller.controller.wintercool2)
+
+router.route('/wintercool3')
+    .get(controller.controller.wintercool3)
+    .post(controller.controller.wintercool3)
+
+//여름옷
+router.route('/summerc1')
+    .get(controller.controller.summerc1)
+    .post(controller.controller.summerc1)
+
+router.route('/summerc2')
+    .get(controller.controller.summerc2)
+    .post(controller.controller.summerc2)
+
+router.route('/summerc3')
+    .get(controller.controller.summerc3)
+    .post(controller.controller.summerc3)
+
+router.route('/summerc4')
+    .get(controller.controller.summerc4)
+    .post(controller.controller.summerc4)
+
+router.route('/summerc5')
+    .get(controller.controller.summerc5)
+    .post(controller.controller.summerc5)
+
+router.route('/summerc6')
+    .get(controller.controller.summerc6)
+    .post(controller.controller.summerc6)
+
+router.route('/summerc7')
+    .get(controller.controller.summerc7)
+    .post(controller.controller.summerc7)
+
+router.route('/summerc8')
+    .get(controller.controller.summerc8)
+    .post(controller.controller.summerc8)
 
 //코트페이지
 router.route('/Coat')

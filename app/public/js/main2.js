@@ -15,6 +15,10 @@ const c1 = document.getElementById("c1"),
     p7 = document.getElementById("p7"),
     p8 = document.getElementById("p8");
 
+    const color=document.querySelector("#change"); 
+
+    
+    
 
 const getJSON = function(url, callback) {
     const xhr = new XMLHttpRequest();
@@ -35,7 +39,7 @@ const getJSON = function(url, callback) {
   const C = document.getElementById("C");
 
  
-  getJSON('http://api.openweathermap.org/data/2.5/weather?q=cheonan&appid=707ff0c3902b644c6468659c800225c0&units=metric',
+  getJSON('http://api.openweathermap.org/data/2.5/weather?q=Cheonan&appid=707ff0c3902b644c6468659c800225c0&units=metric',
     function(err, data) {
     if(err !== null) {
       alert('예상치 못한 오류 발생.' + err);
@@ -133,10 +137,15 @@ const getJSON = function(url, callback) {
   });
 
   var a=0;
+  const start = document.getElementById("start");
 
   change.addEventListener("click",function(){
-    a=prompt("입력해주세요","ex)1,2,3,4");
-    if(a==1){ //봄웜톤
+    //a=prompt("입력해주세요","ex)1,2,3,4");
+    if(color.innerHTML=="봄웜톤"){ //봄웜톤
+      start.innerHTML="봄웜톤 추천 상품"
+      color.onclick=function(){
+        window.location="/main";
+      }
       c1.src ="image/springwarm1.jpg";
       c2.src ="image/springwarm2.jpg";
       c3.src ="image/springwarm3.jpg";
@@ -178,7 +187,11 @@ const getJSON = function(url, callback) {
         window.location="/springwarm8";
       }
     }
-    else if(a==2){//가을웜톤
+    else if(color.innerHTML=="가을웜톤"){//가을웜톤
+      start.innerHTML="가을웜톤 추천 상품"
+      color.onclick=function(){
+        window.location="/main";
+      }
       c1.src ="image/autumnwarm1.jpg";
       c2.src ="image/autumnwarm2.jpg";
       c3.src ="image/autumnwarm3.jpg";
@@ -223,7 +236,11 @@ const getJSON = function(url, callback) {
         window.location="/autumnwarm8";
       }
     }
-    else if(a==3){//여름쿨톤
+    else if(color.innerHTML=="여름쿨톤"){//여름쿨톤
+      start.innerHTML="여름쿨톤 추천 상품"
+      color.onclick=function(){
+        window.location="/main";
+      }
       c1.src ="image/summercool1.jpg";
       c2.src ="image/summercool2.jpg";
       c3.src ="image/summercool3.jpg";
@@ -269,7 +286,11 @@ const getJSON = function(url, callback) {
 
 
     }
-    else if(a==4){//겨울쿨톤
+    else if(color.innerHTML=="겨울쿨톤"){//겨울쿨톤
+      start.innerHTML="겨울쿨톤 추천 상품"
+      color.onclick=function(){
+        window.location="/main";
+      }
       c1.src ="image/wintercool1.jpg";
       c2.src ="image/wintercool2.jpg";
       c3.src ="image/wintercool3.jpg";
@@ -312,7 +333,9 @@ const getJSON = function(url, callback) {
             window.location="/wintercool8";
       }
     }
-    
+    else{
+      alert("퍼스널컬러를 입력해주세요");
+    }
 
   
   })
