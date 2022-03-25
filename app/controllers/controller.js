@@ -107,7 +107,7 @@ const controller = {
                 })
             }
             else {
-                res.send({ success: false, msg: "중복된 아이디가 있습니다." });
+                res.send({ success: false, msg: "사용할 수 없는 아이디입니다." });
             }
         })
     },
