@@ -162,24 +162,16 @@
 
              </table>
               <input type="button" id="ra" value="주문내역보기" onclick="showPopup()" style="margin-left: 43%; margin-top: 10px;">
+              <input type="button" id="rb" value="장바구니보기" onclick="showPopup2()" style="margin-left: 43%; margin-top: 10px;">
               <script>
                   function showPopup(){
                     window.open("/popup","A","width=500,height=400,left=100,top=50");
                     }
+                    function showPopup2(){
+                    window.open("/popup2","A","width=500,height=400,left=100,top=50");
+                    }
               </script>
-             <table border="1" style="margin: 0 auto; margin-top: 25px; width: 100%; border-collapse:collapse ;">
-                 <th style="height: 50px; width: 200px;">장바구니</th>
-                 <th style="width: 800px;">주문내역</th>
-                 <th><button type="button" id="btn" style="margin: 0 auto;">삭제</button></th>
-                 <tr id="tr">
-                     <td style="width: 200px;"><input type="checkbox" style="margin-left:50%;" id="check"></td>
-                     <td id="/" style="width: 100px; height: 100px;">
-                         <img src="C1.jpg" style="width: 100px; height: 100px; margin-top: 10px;" id="img">                       
-                     </td>
-                     <td><input type="button" value="구매하기" style="width: 100%;"></td>
-                 </tr>
-                 
-             </table>
+             
              
  
         </div>

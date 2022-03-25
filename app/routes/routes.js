@@ -42,9 +42,19 @@ router.route('/rasberry')
 router.route("/popup")
     .get(controller.controller.popup)
 
+//장바구니페이지
+router.route("/popup2")
+    .get(controller.controller.popup2)
+
 //구매 API
 router.route("/main/buy")
     .post(controller.controller.buy)
+
+router.route("/main/basket")
+    .post(controller.controller.basket)
+
+router.route("/go_buy")
+    .post(controller.controller.go_buy)
 
 //구매페이지 메인
 router.route('/purchase1')
@@ -57,19 +67,19 @@ router.route('/purchase3')
     .get(controller.controller.purchase3)
 
 router.route('/purchase4')
-    .get(controller.output.purchase4)
+    .get(controller.controller.purchase4)
 
 router.route('/purchase5')
-    .get(controller.output.purchase5)
+    .get(controller.controller.purchase5)
 
 router.route('/purchase6')
-    .get(controller.output.purchase6)
+    .get(controller.controller.purchase6)
 
 router.route('/purchase7')
-    .get(controller.output.purchase7)
+    .get(controller.controller.purchase7)
 
 router.route('/purchase8')
-    .get(controller.output.purchase8)
+    .get(controller.controller.purchase8)
 
 //겨울옷
 router.route('/winterc1')
@@ -142,6 +152,10 @@ router.route('/summercool3')
     .get(controller.controller.summercool3)
     .post(controller.controller.summercool3)
 
+router.route('/summercool4')
+    .get(controller.controller.summercool4)
+    .post(controller.controller.summercool4)
+
 //가을웜톤
 router.route('/autumnwarm1')
     .get(controller.controller.autumnwarm1)
@@ -150,6 +164,10 @@ router.route('/autumnwarm1')
 router.route('/autumnwarm2')
     .get(controller.controller.autumnwarm2)
     .post(controller.controller.autumnwarm2)
+
+router.route('/autumnwarm3')
+    .get(controller.controller.autumnwarm3)
+    .post(controller.controller.autumnwarm3)
 
 router.route('/autumnwarm3')
     .get(controller.controller.autumnwarm3)
@@ -167,6 +185,10 @@ router.route('/wintercool2')
 router.route('/wintercool3')
     .get(controller.controller.wintercool3)
     .post(controller.controller.wintercool3)
+
+router.route('/wintercool4')
+    .get(controller.controller.wintercool4)
+    .post(controller.controller.wintercool4) 
 
 //여름옷
 router.route('/summerc1')
@@ -206,28 +228,28 @@ router.route('/Coat')
     .get(controller.output.coat)
 
 router.route('/Coat1')
-    .get(controller.output.coat1)
+    .get(controller.controller.Coat1)
 
 router.route('/Coat2')
-    .get(controller.output.coat2)
+    .get(controller.controller.Coat2)
 
 router.route('/Coat3')
-    .get(controller.output.coat3)
+    .get(controller.controller.Coat3)
 
 router.route('/Coat4')
-    .get(controller.output.coat4)
+    .get(controller.controller.Coat4)
 
 router.route('/Coat5')
-    .get(controller.output.coat5)
+    .get(controller.controller.Coat5)
 
 router.route('/Coat6')
     .get(controller.controller.Coat6)
 
 router.route('/Coat7')
-    .get(controller.output.coat7)
+    .get(controller.controller.Coat7)
 
 router.route('/Coat8')
-    .get(controller.output.coat8)
+    .get(controller.controller.Coat8)
 
 router.route('/drop')
     .get(controller.controller.deleteMember)
@@ -238,5 +260,8 @@ router.route('/loginCheck')
 //id를 고유값으로 설정하였기 때문에 중복확인을 위한 API
 router.route('/idcheck')
     .get(controller.controller.checkId)
+
+router.route('/p_send')
+    .get(controller.controller.p_send);
 
 module.exports = router;

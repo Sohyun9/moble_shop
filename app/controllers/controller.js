@@ -89,8 +89,8 @@ const controller = {
     insertMembers: async (req, res) => {
         //javascript 구조분해할당
         const user_id = req.body.id;
-        connection.query("SELECT id FROM member WHERE id = ?", [user_id], function (err, rows) {
-            if (rows.id != user_id) {
+        connection.query("SELECT * FROM member WHERE id = ?", [user_id], function (err, rows) {
+            if (rows[0].id != user_id) {
                 const { name, gender, phone, address, id, pwd } = req.body;
                 const sql = `INSERT INTO member VALUES ('${id}','${pwd}','${name}','${address}','${gender}','${phone}', '봄웜톤');`
                 connection.query(sql, (err, rows) => {
@@ -225,9 +225,14 @@ const controller = {
 
     //장바구니
     basket: async (req, res) => {
+        var name = req.body.name;
+        var price = req.body.price;
+        console.log(name, price);
         if (req.session.loginData) {
             const id = req.session.loginData;
-            connection.query('')
+            var Str = "insert into " + id + "_basket values(?,?)";
+            connection.query(Str, [name, price], (err, rows) => {
+            })
         }
     },
 
@@ -258,6 +263,41 @@ const controller = {
             var len = a;
 
             res.render("Popup", {name, price, len});
+        })
+    },
+
+    popup2: async (req, res) => {
+        var id = req.session.loginData;
+
+        var name = new Array();
+        var price = new Array();
+
+        connection.query("SELECT * FROM " + id + "_basket", (err, rows) => {
+            for(var a = 0; a < rows.length; a++){
+                name[a] = rows[a].name;
+                price[a] = rows[a].price;
+            }
+
+            var len = a;
+
+            res.render("Popup2", {name, price, len});
+        })
+    },
+
+    go_buy: async (req, res)=> {
+        var id = req.session.loginData;
+
+        var name = new Array();
+        var price = new Array();
+
+        connection.query("SELECT * FROM " + id + "_basket", (err, rows) => {
+            for(var a = 0; a < rows.length; a++){
+                name[a] = rows[a].name;
+                price[a] = rows[a].price;
+            }
+            connection.query("INSERT into " + id + "_buy values (?,?)",[name, price],(err, rows) => {
+
+            })
         })
     },
 
@@ -302,6 +342,13 @@ const controller = {
         })
     },
 
+    p_send: async (req, res) => {
+        const id = req.session.loginData;
+
+        res.send("id");
+    },
+
+    //겨울옷
     winterc1: async (req, res) => {
         // const id = req.session.loginData;
         // const logincheck = req.session.loginCheck;
@@ -350,6 +397,7 @@ const controller = {
         })
     },
 
+    //메인화면 옷
     purchase1: async (req, res) => {
         // const id = req.session.loginData;
         // const logincheck = req.session.loginCheck;
@@ -374,6 +422,47 @@ const controller = {
         })
     },
 
+    purchase4: async (req, res) => {
+        // const id = req.session.loginData;
+        // const logincheck = req.session.loginCheck;
+        connection.query('SELECT * FROM product WHERE image_name = "C4"', function (err, rows) {
+            res.render('purchase4', { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
+        })
+    },
+
+    purchase5: async (req, res) => {
+        // const id = req.session.loginData;
+        // const logincheck = req.session.loginCheck;
+        connection.query('SELECT * FROM product WHERE image_name = "C5"', function (err, rows) {
+            res.render('purchase5', { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
+        })
+    },
+
+    purchase6: async (req, res) => {
+        // const id = req.session.loginData;
+        // const logincheck = req.session.loginCheck;
+        connection.query('SELECT * FROM product WHERE image_name = "C6"', function (err, rows) {
+            res.render('purchase6', { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
+        })
+    },
+
+    purchase7: async (req, res) => {
+        // const id = req.session.loginData;
+        // const logincheck = req.session.loginCheck;
+        connection.query('SELECT * FROM product WHERE image_name = "C7"', function (err, rows) {
+            res.render('purchase7', { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
+        })
+    },
+
+    purchase8: async (req, res) => {
+        // const id = req.session.loginData;
+        // const logincheck = req.session.loginCheck;
+        connection.query('SELECT * FROM product WHERE image_name = "C8"', function (err, rows) {
+            res.render('purchase8', { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
+        })
+    },
+
+    //봄웜
     springwarm1: async (req, res) => {
         connection.query('SELECT * FROM product WHERE image_name = "springwarm1"', function (err, rows) {
             res.render("springwarm1", { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
@@ -422,6 +511,7 @@ const controller = {
         })
     },
 
+    //여름쿨
     summercool1: async (req, res) => {
         connection.query('SELECT * FROM product WHERE image_name = "summercool1"', function (err, rows) {
             res.render("summercool1", { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
@@ -440,6 +530,13 @@ const controller = {
         })
     },
 
+    summercool4: async (req, res) => {
+        connection.query('SELECT * FROM product WHERE image_name = "summercool4"', function (err, rows) {
+            res.render("summercool4", { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
+        })
+    },
+
+    //가을웜
     autumnwarm1: async (req, res) => {
         connection.query('SELECT * FROM product WHERE image_name = "autumnwarm1"', function (err, rows) {
             res.render("autumnwarm1", { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
@@ -458,6 +555,13 @@ const controller = {
         })
     },
 
+    autumnwarm4: async (req, res) => {
+        connection.query('SELECT * FROM product WHERE image_name = "autumnwarm4"', function (err, rows) {
+            res.render("autumnwarm4", { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
+        })
+    },
+
+    //겨울쿨
     wintercool1: async (req, res) => {
         connection.query('SELECT * FROM product WHERE image_name = "wintercool1"', function (err, rows) {
             res.render("wintercool1", { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
@@ -477,6 +581,14 @@ const controller = {
         })
     },
 
+    wintercool4: async (req, res) => {
+        connection.query('SELECT * FROM product WHERE image_name = "wintercool4"', function (err, rows) {
+            res.render("wintercool4", { 
+                name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
+        })
+    },
+
+    //여름옷
     summerc1: async (req, res) => {
         connection.query('SELECT * FROM product WHERE image_name = "summerc1"', function (err, rows) {
             res.render("summerc1", { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
@@ -525,11 +637,67 @@ const controller = {
         })
     },
   
+    Coat1: async (req, res) => {
+        // const id = req.session.loginData;
+        // const logincheck = req.session.loginCheck;
+        connection.query('SELECT * FROM product WHERE image_name = "Coat1"', function (err, rows) {
+            res.render('Coat1', { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
+        })
+    },
+
+    Coat2: async (req, res) => {
+        // const id = req.session.loginData;
+        // const logincheck = req.session.loginCheck;
+        connection.query('SELECT * FROM product WHERE image_name = "Coat2"', function (err, rows) {
+            res.render('Coat2', { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
+        })
+    },
+
+    Coat3: async (req, res) => {
+        // const id = req.session.loginData;
+        // const logincheck = req.session.loginCheck;
+        connection.query('SELECT * FROM product WHERE image_name = "Coat3"', function (err, rows) {
+            res.render('Coat3', { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
+        })
+    },
+
+    Coat4: async (req, res) => {
+        // const id = req.session.loginData;
+        // const logincheck = req.session.loginCheck;
+        connection.query('SELECT * FROM product WHERE image_name = "Coat4"', function (err, rows) {
+            res.render('Coat4', { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
+        })
+    },
+
+    Coat5: async (req, res) => {
+        // const id = req.session.loginData;
+        // const logincheck = req.session.loginCheck;
+        connection.query('SELECT * FROM product WHERE image_name = "Coat5"', function (err, rows) {
+            res.render('Coat5', { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
+        })
+    },
+
     Coat6: async (req, res) => {
         // const id = req.session.loginData;
         // const logincheck = req.session.loginCheck;
         connection.query('SELECT * FROM product WHERE image_name = "Coat6"', function (err, rows) {
             res.render('Coat6', { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
+        })
+    },
+
+    Coat7: async (req, res) => {
+        // const id = req.session.loginData;
+        // const logincheck = req.session.loginCheck;
+        connection.query('SELECT * FROM product WHERE image_name = "Coat7"', function (err, rows) {
+            res.render('Coat7', { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
+        })
+    },
+
+    Coat8: async (req, res) => {
+        // const id = req.session.loginData;
+        // const logincheck = req.session.loginCheck;
+        connection.query('SELECT * FROM product WHERE image_name = "Coat8"', function (err, rows) {
+            res.render('Coat8', { name: rows[0].name, url: rows[0].url, price: rows[0].price, image_name: rows[0].image_name });
         })
     },
 }
