@@ -39,7 +39,7 @@ const getJSON = function(url, callback) {
   const C = document.getElementById("C");
 
  
-  getJSON('http://api.openweathermap.org/data/2.5/weather?q=Toronto&appid=707ff0c3902b644c6468659c800225c0&units=metric',
+  getJSON('http://api.openweathermap.org/data/2.5/weather?q=Cheonan&appid=707ff0c3902b644c6468659c800225c0&units=metric',
     function(err, data) {
     if(err !== null) {
       alert('예상치 못한 오류 발생.' + err);

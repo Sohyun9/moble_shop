@@ -36,11 +36,11 @@
       </tr>
       <% } %>
   </table>
-  <input type="submit" id="btn1" value="구매하기">
+  <input type="submit" id="btn1" onclick="location.href='/go_buy'" value="구매하기">
 
 </body>
 
-<script>
+<!-- <script>
   const BTN = document.getElementById("btn1");
 
   BTN.addEventListener("click", function () {
@@ -53,20 +53,20 @@
 
     xhr.setRequestHeader("Content-Type", "application/json");
 
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState === 4) {
-        console.log(xhr.responseText);
-      }
-    };
+    // xhr.onreadystatechange = function () {
+    //   if (xhr.readyState === 4) {
+    //     console.log(xhr.responseText);
+    //   }
+    // };
 
-    let data = `{
-            "name": "${document.querySelector("#name").innerHTML}",
-            "price": "${document.querySelector("#price").innerHTML}"
-            }`;
+    // let data = `{
+    //         "name": "${document.querySelector("#name").innerHTML}",
+    //         "price": "${document.querySelector("#price").innerHTML}"
+    //         }`;
 
-    xhr.send(data);
+    // xhr.send(data);
 
   })
-</script>
+</script> -->
 
 </html>

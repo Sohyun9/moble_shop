@@ -54,6 +54,7 @@ router.route("/main/basket")
     .post(controller.controller.basket)
 
 router.route("/go_buy")
+    .get(controller.controller.go_buy)
     .post(controller.controller.go_buy)
 
 //구매페이지 메인

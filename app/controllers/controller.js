@@ -89,8 +89,8 @@ const controller = {
     insertMembers: async (req, res) => {
         //javascript 구조분해할당
         const user_id = req.body.id;
-        connection.query("SELECT * FROM member WHERE id = ?", [user_id], function (err, rows) {
-            if (rows[0].id != user_id) {
+        connection.query("SELECT * FROM member WHERE id = ?", [user_id], function (err, data) {
+            if (data[0] == undefined) {
                 const { name, gender, phone, address, id, pwd } = req.body;
                 const sql = `INSERT INTO member VALUES ('${id}','${pwd}','${name}','${address}','${gender}','${phone}', '봄웜톤');`
                 connection.query(sql, (err, rows) => {
@@ -141,8 +141,6 @@ const controller = {
             req.session.destroy(function () {
                 res.redirect('/');
             });
-        } else {
-            console.log('로그인 상태가 아닙니다.');
         }
     },
 
@@ -205,11 +203,11 @@ const controller = {
             }
 
             else {
-                res.send("1error");
+                res.send("error");
             }
         }
         else {
-            res.send("2error");
+            res.send("error");
         }
     },
 
@@ -287,16 +285,9 @@ const controller = {
     go_buy: async (req, res)=> {
         var id = req.session.loginData;
 
-        var name = new Array();
-        var price = new Array();
-
-        connection.query("SELECT * FROM " + id + "_basket", (err, rows) => {
-            for(var a = 0; a < rows.length; a++){
-                name[a] = rows[a].name;
-                price[a] = rows[a].price;
-            }
-            connection.query("INSERT into " + id + "_buy values (?,?)",[name, price],(err, rows) => {
-
+        connection.query("INSERT INTO " + id +"_buy SELECT * FROM " + id + "_basket;", (err, rows) => {
+            connection.query("DELETE FROM " + id + "_basket", (err, rows) => {
+                res.redirect('/popup2');
             })
         })
     },
