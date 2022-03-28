@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <title>연습</title>
+    <link rel="stylesheet" href="/css/Coat.css">
+    
+
+</head>
+<body>
+
+    <header>
+        <div id="top">
+            <h2 onclick="location.href='/main'">Moble shop</h2>
+        </div>
+        <div id="login">
+            <a href="/">로그아웃</a>  <a href="/main/mypage">마이페이지</a>
+            <div>
+                오늘의 기온 <span id="C"></span>
+                <script src="/js/wether.js" defer></script>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div id="table">
+            <div id="menu">
+                <ul class="bar">
+                    <li>
+                        <a href="#">아우터</a>
+                        <ul class="submenu">
+                            <li><a href="/Coat">코트</a></li>
+                            <li><a href="#">패딩</a></li>
+                            <li><a href="#">가디건</a></li>
+                            <li><a href="#">재킷</a></li>
+                            <li><a href="#">기타</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">상의</a>
+                        <ul class="submenu">
+                            <li><a href="#">맨투맨</a></li>
+                            <li><a href="#">후드</a></li>
+                            <li><a href="#">니트</a></li>
+                            <li><a href="#">셔츠</a></li>
+                            <li><a href="#">기타</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">하의</a>
+                        <ul class="submenu">
+                            <li><a href="#">데님</a></li>
+                            <li><a href="#">숏</a></li>
+                            <li><a href="#">슬랙스</a></li>
+                            <li><a href="#">트레이닝</a></li>
+                            <li><a href="#">기타</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">모자</a>
+                        <ul class="submenu1">
+                            <li><a href="#">캡</a></li>
+                            <li><a href="#">비니</a></li>
+                            <li><a href="#">페도라</a></li>
+                            <li><a href="#">기타</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">가방</a>
+                        <ul class="submenu">
+                            <li><a href="#">백팩</a></li>
+                            <li><a href="#">메신저백</a></li>
+                            <li><a href="#">클러치백</a></li>
+                            <li><a href="#">캐리어</a></li>
+                            <li><a href="#">기타</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+       
+    </nav>
+
+    <section>
+       
+           <div id="start">
+            Coat
+           </div>
+           <div id="item">
+            <table>
+                <tr>
+                    <td><img src="image/Coat1.jpg" onclick="location.href='/Coat1'" style="cursor: pointer;"></td>
+                    <td><img src="image/Coat2.jpg" onclick="location.href='/Coat2'" style="cursor: pointer;"></td>
+                    <td><img src="image/Coat3.jpg" onclick="location.href='/Coat3'" style="cursor: pointer;"></td>
+                    <td><img src="image/Coat4.jpg" onclick="location.href='/Coat4'" style="cursor: pointer;"></td>
+                </tr>
+                <tr>
+                    <td>19000원</td>
+                    <td>19000원</td>
+                    <td>19000원</td>
+                    <td>19000원</td>
+                </tr>
+            </table>
+           </div>
+           <div id="item">
+            <table>
+                <tr>
+                    <td><img src="image/Coat5.jpg" onclick="location.href='/Coat5'" style="cursor: pointer;"></td>
+                    <td><img src="image/Coat6.jpg" onclick="location.href='/Coat6'" style="cursor: pointer;"></td>
+                    <td><img src="image/Coat7.jpg" onclick="location.href='/Coat7'" style="cursor: pointer;"></td>
+                    <td><img src="image/Coat8.jpg" onclick="location.href='/Coat8'" style="cursor: pointer;"></td>
+                </tr>
+                <tr>
+                    <td>19000원</td>
+                    <td>19000원</td>
+                    <td>19000원</td>
+                    <td>19000원</td>
+                </tr>
+            </table>
+           </div>
+
+
+        
+    </section>
+
+    <footer>
+        <div id="number">
+            문의사항 010-1234-5678
+        </div>
+       <div>
+           (주)Moble
+       </div>
+    </footer>
+</body>
+</html>

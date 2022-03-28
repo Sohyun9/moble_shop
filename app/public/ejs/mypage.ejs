@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <title>연습</title>
+    <link rel="stylesheet" href="/css/mypage.css">
+    <script src="js/mypage.js" defer></script>
+    
+</head>
+<body>
+    <header>
+        <div id="top">
+            <h2 onclick="location.href='/main'">Moble shop</h2>
+        </div>
+        <div id="login">
+            <a href="/logout">로그아웃</a>  <a href="/main/mypage">마이페이지</a>
+            <div>
+                오늘의 기온 <span id="C"></span>
+                <script src="/js/wether.js" defer></script>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div id="table">
+            <div id="menu">
+                <ul class="bar">
+                    <li>
+                        <a href="#">아우터</a>
+                        <ul class="submenu">
+                            <li><a href="/Coat">코트</a></li>
+                            <li><a href="#">패딩</a></li>
+                            <li><a href="#">가디건</a></li>
+                            <li><a href="#">재킷</a></li>
+                            <li><a href="#">기타</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">상의</a>
+                        <ul class="submenu">
+                            <li><a href="#">맨투맨</a></li>
+                            <li><a href="#">후드</a></li>
+                            <li><a href="#">니트</a></li>
+                            <li><a href="#">셔츠</a></li>
+                            <li><a href="#">기타</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">하의</a>
+                        <ul class="submenu">
+                            <li><a href="#">데님</a></li>
+                            <li><a href="#">숏</a></li>
+                            <li><a href="#">슬랙스</a></li>
+                            <li><a href="#">트레이닝</a></li>
+                            <li><a href="#">기타</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">모자</a>
+                        <ul class="submenu1">
+                            <li><a href="#">캡</a></li>
+                            <li><a href="#">비니</a></li>
+                            <li><a href="#">페도라</a></li>
+                            <li><a href="#">기타</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">가방</a>
+                        <ul class="submenu">
+                            <li><a href="#">백팩</a></li>
+                            <li><a href="#">메신저백</a></li>
+                            <li><a href="#">클러치백</a></li>
+                            <li><a href="#">캐리어</a></li>
+                            <li><a href="#">기타</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+       
+    </nav>
+    
+    <section>
+        <!-- <form action="infoUpdate" method="post"> -->
+        <div id="my">
+             <h2>My page</h2>
+             <table style="margin-top: 50px; width: 100%; border-collapse: collapse;" border="1" >
+                 <th style="height: 50px; text-align: center;">개인정보</th>
+                 <th><button id="btn1" type="submit" style="margin: auto 0;">수정하기</button></th>
+                 <script>
+                     const BTN = document.getElementById("btn1");
+                     
+                     BTN.addEventListener("click", function(){
+                        //  alert(document.querySelector("#address").innerHTML);
+
+                         let url = "/main/infoUpdate";
+
+                         let xhr = new XMLHttpRequest();
+                         xhr.open("POST", url);
+
+                         xhr.setRequestHeader("Content-Type", "application/json");
+
+                         xhr.onreadystatechange = function () {
+                         if (xhr.readyState === 4) {
+                             console.log(xhr.responseText);
+                         }};
+
+                        let data = `{
+                        "id": "${document.querySelector("#id").innerHTML}",
+                        "name": "${document.querySelector("#name").innerHTML}",
+                        "pwd" : "${document.querySelector("#pwd").innerHTML}",
+                        "address" : "${document.querySelector("#address").innerHTML}",
+                        "phone" : "${document.querySelector("#phone").innerHTML}"
+                        }`;
+
+                        xhr.send(data);
+
+                     })
+                 </script>
+                 
+                 <tr>
+                     <td style="width: 333px; text-align: center;">이름</td>
+                     <td style="width: 333px; text-align: center;" id="name" name="name" required><%=name%></td>
+                   
+                 </tr>
+                 <tr>
+                     <td style="width: 333px; text-align: center;">아이디</td>
+                     <td style="width: 333px; text-align: center;" id="id" user="user" required><%=user%></td>
+                 </tr>
+                 <tr>
+                     <td style="width: 333px; text-align: center;">비밀번호</td>
+                     <td style="width:333px; text-align: center;" id="pwd" contenteditable="true" pwd="pwd" required><%=pwd%></td>
+                    
+                 </tr>
+                 <tr>
+                     <td style="width: 333px; text-align: center;">전화번호</td>
+                     <td style="width:333px; text-align: center;" id="phone" contenteditable="true" phone="phone" required><%=phone%></td>
+                 
+                 </tr>
+                 <tr>
+                     <td style="width: 333px; text-align: center;">주소</td>
+                     <td style="width:333px; text-align: center;" id="address" contenteditable="true" address="address" required><%=address%></td>
+                 </tr>
+                 <tr>
+                    <td style="width: 333px; text-align: center;">퍼스너컬러</td>
+                    <td style="width:333px; text-align: center;" id="color"  color="color" required><%=color%></td>
+                </tr>
+                <!-- </form> -->
+                 <tr>
+                     <td colspan="2"><input type="button" value="회원탈퇴" style="margin-left: 45%; color: white; background-color: black;" onclick="button();"></td>
+                     <script>
+                        function button(){
+                            alert("회원탈퇴 되었습니다");
+                            window.location="/delete";
+                        }
+                     </script>
+                 </tr>
+
+             </table>
+              <input type="button" id="ra" value="주문내역보기" onclick="showPopup()" style="margin-left: 43%; margin-top: 10px;">
+              <input type="button" id="rb" value="장바구니보기" onclick="showPopup2()" style="margin-left: 43%; margin-top: 10px;">
+              <script>
+                  function showPopup(){
+                    window.open("/popup","A","width=500,height=400,left=100,top=50");
+                    }
+                    function showPopup2(){
+                    window.open("/popup2","A","width=500,height=400,left=100,top=50");
+                    }
+              </script>
+             
+             
+ 
+        </div>
+       
+         
+     </section>
+
+
+
+    <footer>
+        <div id="number">
+            <p class="a">문의사항 010-1234-5678</p>
+            <p class="b">(주)Moble</p>
+            <p class="b">주소: 충청남도 천안시 동남구 대흥로 255 </p>
+        </div>
+
+    </footer>
+</body>
+</html>
+
+<!-- <script>
+const editbtn1 = document.getElementById('btn1');
+const editable1 = document.getElementById('pwd');
+
+const editbtn2 = document.getElementById('btn2');
+const editable2 = document.getElementById('phone');
+
+const editbtn3 = document.getElementById('btn4');
+const editable3 = document.getElementById('address');
+
+editbtn1.addEventListener('click',function(){
+if(!editable1.isContentEditable){
+    
+    editable1.contentEditable='true';
+    editable1.style.background='white';
+    editbtn1.innerHTML="저장";
+    // editable1.style.border="solid 1px black";
+    editbtn1.style.background='linear-gradient(45deg, Violet, Orange)';
+  
+}
+else{
+    editable1.contentEditable='false';
+    editbtn1.innerHTML="수정하기";
+    // editable1.style.border="solid 0px black";
+    editbtn1.style.background='white';
+    editable1.style.background='none';
+    // editbtn1.location.href="/infoUpdate";
+}
+
+});
+
+editbtn1.addEventListener('click',function(){
+if(!editable2.isContentEditable){
+    editable2.style.background='white';
+    editable2.contentEditable='true';
+    editbtn2.innerHTML="저장";
+    editbtn2.style.background='linear-gradient(45deg, Violet, Orange)';
+  
+}
+else{
+    editable2.contentEditable='false';
+    editbtn1.innerHTML="수정하기";
+    editbtn1.style.background='white';
+    editable2.style.background='none';
+}
+
+});
+
+editbtn1.addEventListener('click',function(){
+if(!editable3.isContentEditable){
+    editable3.style.background='white';
+    editable3.contentEditable='true';
+    editbtn3.innerHTML="저장";
+    editbtn3.style.background='linear-gradient(45deg, Violet, Orange)';
+  
+}
+else{
+    editable3.contentEditable='false';
+    editbtn1.innerHTML="수정하기";
+    editbtn1.style.background='white';
+    editable3.style.background='none';
+}
+
+});
+
+var check = document.getElementById("check");
+var img = document.getElementById("img");
+var C = document.getElementById("C");
+var btn = document.getElementById("btn");
+var tr= document.getElementById("tr");
+
+
+btn.addEventListener("click",function(){
+if(check.checked){
+    tr.style.display="none";
+    
+}
+
+})
+
+</script> -->
