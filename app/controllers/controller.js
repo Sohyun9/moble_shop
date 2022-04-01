@@ -180,7 +180,7 @@ const controller = {
         var color = req.body.color;
 
         //우선 id를 고유키값으로 수정되지 않게 구현
-        connection.query('UPDATE member SET address=?, name=?, pwd=?, phone=? WHERE id=?', [address, name, pwd, phone, id], function (err, rows) {
+        connection.query('UPDATE member SET address=?, name=?, pwd=?, phone=?, color=? WHERE id=?', [address, name, pwd, phone, color, id], function (err, rows) {
         })
     },
 
@@ -334,9 +334,11 @@ const controller = {
     },
 
     p_send: async (req, res) => {
-        const id = req.session.loginData;
+        const id = req.body.id;
+        const user = req.session.loginData;
 
-        res.send("id");
+        console.log(user);
+        res.send(user);
     },
 
     //겨울옷

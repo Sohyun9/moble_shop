@@ -263,6 +263,7 @@ router.route('/idcheck')
     .get(controller.controller.checkId)
 
 router.route('/p_send')
-    .get(controller.controller.p_send);
+    .get(controller.controller.p_send)
+    .post(controller.controller.p_send)
 
 module.exports = router;

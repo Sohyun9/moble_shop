@@ -114,11 +114,35 @@
                         "name": "${document.querySelector("#name").innerHTML}",
                         "pwd" : "${document.querySelector("#pwd").innerHTML}",
                         "address" : "${document.querySelector("#address").innerHTML}",
-                        "phone" : "${document.querySelector("#phone").innerHTML}"
+                        "phone" : "${document.querySelector("#phone").innerHTML}",
+                        "color" : "${document.querySelector("#color").innerHTML}"
                         }`;
 
                         xhr.send(data);
 
+                     })
+
+                     const BTN3 = document.getElementById("btn3");
+
+                     BTN3.addEventListener("click", function(){
+
+                        let url = "/p_send";
+
+                        let xhr = new XMLHttpRequest();
+                         xhr.open("GET", url);
+
+                         xhr.setRequestHeader("Content-Type", "application/json");
+
+                         xhr.onreadystatechange = function () {
+                         if (xhr.readyState === 4) {
+                             console.log(xhr.responseText);
+                         }};
+
+                        let data = `{
+                        "id": "${document.querySelector("#id").innerHTML}",
+                        }`;
+
+                        xhr.send(data);
                      })
                  </script>
                  
@@ -147,7 +171,7 @@
                  </tr>
                  <tr>
                     <td style="width: 333px; text-align: center;">퍼스너컬러</td>
-                    <td style="width:333px; text-align: center;" id="color"  color="color" required><%=color%></td>
+                    <td style="width:333px; text-align: center;" id="color" contenteditable="true"  color="color" required><%=color%></td>
                 </tr>
                 <!-- </form> -->
                  <tr>

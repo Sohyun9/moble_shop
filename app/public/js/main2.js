@@ -45,7 +45,7 @@ const getJSON = function(url, callback) {
       alert('예상치 못한 오류 발생.' + err);
     } else {
 
-        if(data.main.temp<=15){
+        if(data.main.temp<=11){
             c1.src = "image/winterc1.jpg";
             p1.innerHTML = "19000원";
             c1.onclick=function(){
@@ -87,7 +87,7 @@ const getJSON = function(url, callback) {
                 window.location="/Coat6";
             }
         }
-        else if(15<data.main.temp<=20){
+        else if(11<data.main.temp<=20){
             c1.src = "image/C2.jpg";
             c1.onclick=function(){
                 window.location="/purchase2";
@@ -104,6 +104,7 @@ const getJSON = function(url, callback) {
             c4.onclick=function(){
                 window.location="/purchase5";
             }
+            
             c5.src = "image/C6.jpg";
             c5.onclick=function(){
                 window.location="/purchase6";
