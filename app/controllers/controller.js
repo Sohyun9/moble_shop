@@ -106,6 +106,7 @@ const controller = {
                     res.send({ success: true });
                 })
             }
+            
             else {
                 res.send({ success: false, msg: "사용할 수 없는 아이디입니다." });
             }
