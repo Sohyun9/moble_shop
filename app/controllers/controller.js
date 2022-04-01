@@ -180,7 +180,7 @@ const controller = {
         var color = req.body.color;
 
         //우선 id를 고유키값으로 수정되지 않게 구현
-        connection.query('UPDATE member SET address=?, name=?, pwd=?, phone=? WHERE id=?', [address, name, pwd, phone, id], function (err, rows) {
+        connection.query('UPDATE member SET address=?, name=?, pwd=?, phone=?, color=? WHERE id=?', [address, name, pwd, phone, color, id], function (err, rows) {
         })
     },
 

@@ -89,34 +89,42 @@ const getJSON = function(url, callback) {
         }
         else if(15<data.main.temp<=20){
             c1.src = "image/C2.jpg";
+            p1.innerHTML = "12000원";
             c1.onclick=function(){
                 window.location="/purchase2";
             }
             c2.src = "image/C3.jpg";
+            p2.innerHTML = "19000원";
             c2.onclick=function(){
                 window.location="/purchase3";
             }
             c3.src = "image/C4.jpg";
+            p3.innerHTML = "20000원";
             c3.onclick=function(){
                 window.location="/purchase4";
             }
             c4.src = "image/C5.jpg";
+            p4.innerHTML = "28000원";
             c4.onclick=function(){
                 window.location="/purchase5";
             }
             c5.src = "image/C6.jpg";
+            p5.innerHTML = "18000원";
             c5.onclick=function(){
                 window.location="/purchase6";
             }
             c6.src = "image/C7.jpg";
+            p6.innerHTML = "19000원";
             c6.onclick=function(){
                 window.location="/purchase7";
             }
             c7.src = "image/Coat8.jpg";
+            p7.innerHTML = "21000원";
             c7.onclick=function(){
                 window.location="/Coat8";
             }
             c8.src = "image/Coat5.jpg";
+            p8.innerHTML = "19000원";
             c8.onclick=function(){
                 window.location="/Coat5";
             }
